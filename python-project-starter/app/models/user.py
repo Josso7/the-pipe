@@ -9,7 +9,13 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    subscriber_count = db.Column(db.Integer, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    # comment = db.relationship(
+    #     'Comment', back_populates='user')
+    # video = db.relationship(
+    #     'Video', back_populates='user')
 
     @property
     def password(self):
