@@ -11,3 +11,8 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         'DATABASE_URL').replace('postgres://', 'postgresql://')
     SQLALCHEMY_ECHO = True
+
+    # Cloudinary environment variables:
+    CLOUD_NAME = os.environ.get('CLOUD_NAME')
+    API_KEY = os.environ.get('API_KEY')
+    API_SECRET = os.environ.get('API_SECRET')
