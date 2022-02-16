@@ -8,11 +8,12 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import Cloudinary from './components/Cloudinary';
+const { REACT_APP_CLOUDINARY_API_KEY, REACT_APP_CLOUDINARY_API_SECRET } = process.env;
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
@@ -28,6 +29,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/upload' exact={true}>
+          <Cloudinary />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
