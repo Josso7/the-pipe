@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Cloudinary from './components/Cloudinary';
+import Channel from './components/Channel';
 const { REACT_APP_CLOUDINARY_API_KEY, REACT_APP_CLOUDINARY_API_SECRET } = process.env;
 
 function App() {
@@ -41,8 +42,8 @@ function App() {
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
+        <ProtectedRoute path='/users/channel' exact={true} >
+          <Channel />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
