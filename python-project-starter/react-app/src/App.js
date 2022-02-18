@@ -6,11 +6,12 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import User from './components/User';
 import { authenticate } from './store/session';
 import Cloudinary from './components/Cloudinary';
-const { REACT_APP_CLOUDINARY_API_KEY, REACT_APP_CLOUDINARY_API_SECRET } = process.env;
-
+import Channel from './components/Channel';
+import ManageVideos from './components/ManageVideos'
+import CreateVideo from './components/Forms/CreateVideo';
+import HomePage from './components/HomePage'
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -41,11 +42,14 @@ function App() {
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
+        <ProtectedRoute path='/user/channel' exact={true} >
+          <Channel />
+        </ProtectedRoute>
+        <ProtectedRoute path='/user/channel/videos' exact={true} >
+          <ManageVideos />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <HomePage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
