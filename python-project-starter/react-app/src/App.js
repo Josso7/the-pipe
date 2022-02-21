@@ -12,6 +12,8 @@ import Channel from './components/Channel';
 import ManageVideos from './components/ManageVideos'
 import CreateVideo from './components/Forms/CreateVideo';
 import HomePage from './components/HomePage'
+import Navbar from './components/Navbar';
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -28,7 +30,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <Navbar />
       <Switch>
         <Route path='/upload' exact={true}>
           <Cloudinary />
