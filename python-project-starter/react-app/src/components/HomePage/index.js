@@ -19,12 +19,18 @@ function HomePage(){
             {videos && videos.map(video => {
                 return (
                 <div key={video.id} className='single-video-container'>
-                    <div className='video-title'></div>
                     <video className='video'
                     controls
                     src={video.video_url}
                     ></video>
-                    <div className='video-description'></div>
+                    <div className='video-details'>
+                        <div className='title'>
+                            {video.title}
+                        </div>
+                        <div className='description'>
+                            {video.description}
+                        </div>
+                    </div>
                 </div>
                 )
             }
