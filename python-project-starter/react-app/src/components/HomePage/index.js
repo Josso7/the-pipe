@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { getVideos } from '../../store/video';
 import './HomePage.css'
 import Navbar
@@ -21,11 +22,13 @@ function HomePage(){
         <div className='videos-container'>
             {videos && videos.map(video => {
                 return (
+                <>
                 <div key={video.id} className='single-video-container'>
+                    <NavLink to={`/videos/${video.id}`}>
                     <video className='video'
-                    controls
                     src={video.video_url}
                     ></video>
+                    </NavLink>
                     <div className='video-details'>
                         <div className='title'>
                             {video.title}
@@ -35,6 +38,7 @@ function HomePage(){
                         </div>
                     </div>
                 </div>
+                </>
                 )
             }
             )}

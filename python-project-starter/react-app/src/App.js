@@ -13,6 +13,7 @@ import ManageVideos from './components/ManageVideos'
 import CreateVideo from './components/Forms/CreateVideo';
 import HomePage from './components/HomePage'
 import Navbar from './components/Navbar';
+import Videos from './components/Videos';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -51,6 +52,9 @@ function App() {
         <ProtectedRoute path='/user/channel/videos' exact={true} >
           <ManageVideos />
         </ProtectedRoute>
+        <Route path='/videos/:id'>
+          <Videos />
+        </Route>
         <Route path='/' exact={true} >
           <HomePage />
         </Route>
