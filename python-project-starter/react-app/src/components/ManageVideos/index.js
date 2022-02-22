@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { postVideo } from '../../store/video'
 import Modal from '../Modal'
 import CreateVideo from '../Forms/CreateVideo';
+import Navbar from '../Navbar';
 
 function ManageVideos(){
     const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function ManageVideos(){
 
     return (
         <div id='portal'>
+          <Navbar />
             {/* <div>Hello from Manage Videos</div>
             <input type='file'
             onChange={e => setVideoFile(e.target.files[0])}

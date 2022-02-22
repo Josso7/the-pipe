@@ -7,6 +7,7 @@
     width: 100%;
     height: 250px;
     object-fit: fill;
+    z-index: -1;
 }
 
 .videos-container {
@@ -20,10 +21,12 @@
     column-gap: 25px;
     align-items: center;
     margin-top: 56px;
+    background: transparent;
 
 }
 
 .video-details {
     padding: 0;
+    position: absolute;
+    z-index: -1;
 }
-
