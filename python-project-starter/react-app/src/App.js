@@ -17,6 +17,7 @@ import Navbar from './components/Navbar';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
@@ -30,7 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      {/* <Navbar /> */}
       <Switch>
         <Route path='/upload' exact={true}>
           <Cloudinary />
@@ -50,9 +51,9 @@ function App() {
         <ProtectedRoute path='/user/channel/videos' exact={true} >
           <ManageVideos />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        <Route path='/' exact={true} >
           <HomePage />
-        </ProtectedRoute>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

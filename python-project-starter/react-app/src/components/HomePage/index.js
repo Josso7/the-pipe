@@ -2,7 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getVideos } from '../../store/video';
 import './HomePage.css'
-
+import Navbar
+ from '../Navbar';
 function HomePage(){
     const dispatch = useDispatch();
 
@@ -15,6 +16,8 @@ function HomePage(){
     console.log(videos);
 
     return (
+        <>
+        <Navbar />
         <div className='videos-container'>
             {videos && videos.map(video => {
                 return (
@@ -36,6 +39,7 @@ function HomePage(){
             }
             )}
         </div>
+        </>
     )
 }
 
