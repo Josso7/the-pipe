@@ -11,13 +11,11 @@ function Cloudinary(){
           body: data
         });
         const file = await res.json();
-        console.log(file);
       }
     return (
         <div className='video-upload-container'>
             <input className='video-upload-input' type='file'
             onChange={(e) => {
-                console.log(e.target.files[0]);
                 uploadFile(e);
             }}
             >

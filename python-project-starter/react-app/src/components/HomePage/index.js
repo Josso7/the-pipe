@@ -8,13 +8,11 @@ import Navbar
 function HomePage(){
     const dispatch = useDispatch();
 
-    const videos = useSelector(state => state?.videos?.videos[0]);
+    const videos = useSelector(state => state?.videos?.entries);
 
     useEffect(() => {
         dispatch(getVideos());
     }, [])
-
-    console.log(videos);
 
     return (
         <>

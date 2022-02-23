@@ -35,13 +35,9 @@ function ManageVideos(){
           body: data
         });
         const file = await res.json();
-        console.log('----------- RESPONSE FROM CLOUDINARY ', file);
-        console.log('----------- FILE.SECURE_URL ', file.secure_url);
         dispatch(postVideo(file.secure_url, title, description));
 
       }
-
-    console.log('---------- REACT STATE videoFile', videoFile);
 
     return (
         <div id='portal'>

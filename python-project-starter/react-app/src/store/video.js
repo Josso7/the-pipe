@@ -30,13 +30,11 @@ export const getVideos = () => async dispatch => {
 
     if(response.ok){
         const videos = await response.json();
-        console.log(videos);
         dispatch(load(videos))
     }
 }
 
 const initialState = {
-    videos: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -44,10 +42,9 @@ const reducer = (state = initialState, action) => {
 
     switch(action.type){
       case GET_VIDEOS: {
-          console.log(action.videos)
         return {
             ...state,
-            videos: [action.videos.videos]
+            entries: [...action.videos.videos]
         }
       }
       default: return state;

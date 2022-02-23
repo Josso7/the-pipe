@@ -122,8 +122,21 @@ video {
     border-radius: 50%;
     background-color: #c2175b;
     min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .add-comment {
     margin-left: 90px;
+}
+
+.user-comment-text {
+    /* display: flex; */
+    /* align-items: center;
+    justify-content: center; */
+    /* text-align: center; */
+    margin: 0;
+    color: white;
+    font-size: 15px;
 }
