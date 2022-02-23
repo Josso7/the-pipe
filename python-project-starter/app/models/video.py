@@ -1,5 +1,6 @@
 from .db import db
-
+from sqlalchemy.dialects.mysql import TIME
+from datetime import datetime
 class Video(db.Model):
     __tablename__ = 'videos'
 
@@ -8,8 +9,9 @@ class Video(db.Model):
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(5000), nullable=False)
     video_url = db.Column(db.String(1000), nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False)
-    updated_at = db.Column(db.DateTime, nullable=False)
+    views = db.Column(db.Integer, nullable=False)
+    created_at_date = db.Column(db.String(100), nullable=False)
+    created_at_time = db.Column(db.TIME(), nullable=False)
 
     # user = db.relationship(
     #     'User', back_populates='video')
@@ -23,6 +25,7 @@ class Video(db.Model):
             'title': self.title,
             'description': self.description,
             'video_url': self.video_url,
-            'created_at': self.created_at,
-            'updated_at': self.updated_at,
+            'views': self.views,
+            'created_at_date': self.created_at_date,
+            'created_at_time': str(self.created_at_time),
         }

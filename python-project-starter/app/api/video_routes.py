@@ -9,7 +9,6 @@ video_routes = Blueprint('videos', __name__)
 @login_required
 def post_video():
     url = request.json
-    print('``````````````````', url)
     video = Video(
         user_id = url['userId'],
         video_url = url['videoUrl'],
@@ -25,5 +24,4 @@ def post_video():
 @video_routes.route('/', methods=['GET'])
 def get_videos():
     videos = Video.query.all()
-    print('---------------------- VIDEOS', videos[0].to_dict())
     return {'videos' : [video.to_dict() for video in videos]}

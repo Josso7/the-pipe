@@ -40,15 +40,15 @@ function Navbar(){
         <>
         </>
     )
-
+    
     return (
 
-        <div className='navbar-container'>
+        <div id='navbar-container'>
             <div className='navbar-container-start'>
                 <button className='navbar-menu-button'>
                     <img src={HamburgerMenuIcon}></img>
                 </button>
-                <Link exact to='/'>
+                <Link to='/'>
                     <img id='image-yt-logo' src={YouTubeHomeLogo}></img>
                 </Link>
             </div>
@@ -67,7 +67,7 @@ function Navbar(){
                         </img>
                     </div>
             </div>
-            <NavLink to='/login'><button className='sign-in-button'>Sign in</button></NavLink>
+            {!user && <NavLink to='/login'><button className='sign-in-button'>Sign in</button></NavLink>}
             <button
             className='navbar-menu-button'
             id='user-menu-button'
