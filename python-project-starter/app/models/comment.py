@@ -6,7 +6,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, nullable=False)
     video_id = db.Column(db.Integer, nullable=False)
-    content = db.Column(db.String(10000) nullable=False)
+    content = db.Column(db.String(10000), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
@@ -14,7 +14,6 @@ class Comment(db.Model):
     #     'User', back_populates='comment')
     # video = db.relationship(
     #     'Video', back_populates='comment')
-
 
     def to_dict(self):
         return {

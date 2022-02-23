@@ -1,0 +1,129 @@
+.video-container {
+    margin-top: 80px;
+    margin-left: 90px;
+    width: 67%;
+    height: auto;
+}
+
+video {
+    width: 100%;
+}
+
+.video-title-container {
+    margin-left: 90px;
+    font-size: 22px;
+    margin-bottom: 0px;
+    line-height: 0px;
+}
+
+.video-details-container {
+    margin-left: 90px;
+    font-size: 17px;
+    line-height: 2rem;
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #606060;
+    line-height: 0px;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 10px;
+    width: 67%;
+}
+
+.bullet-point{
+    color: #606060;
+    margin: 0 4px;
+}
+
+.video-user-info-container {
+    display: flex;
+    flex-direction: row;
+    padding-top: 16px;
+    align-items: center;
+    height: 60px;
+    justify-content: space-between;
+    width: 67%;
+    margin-left: 90px;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 20px;
+}
+
+.user-icon {
+    border: 0px solid transparent;
+    border-radius: 50%;
+    background-color: #c2175b;
+    min-width: 48px;
+    height: 48px;
+    display: inline;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 0px;
+    width: 46%;
+    margin-right: 39%;
+}
+
+.subscriber-count {
+    margin-top: 6px;
+    color: #606060;
+}
+
+.username {
+    margin-top: 20px;
+}
+
+.subscribe-button{
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 3%;
+    width: 110px;
+    height: 37px;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+}
+
+.subscribe-text {
+    color: white;
+    font-size: 14px;
+}
+
+.comments-container {
+    width: 67%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 90px;
+    margin-top: 15px;
+}
+
+.single-comment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.comment-info {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.comment-info {
+    margin-left: 15px;
+}
+
+#comment.user-icon {
+    width: 40px;
+    height: 40px;
+    border: 0px solid transparent;
+    border-radius: 50%;
+    background-color: #c2175b;
+    min-width: 40px;
+}
+
+.add-comment {
+    margin-left: 90px;
+}

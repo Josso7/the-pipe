@@ -13,6 +13,7 @@ import ManageVideos from './components/ManageVideos'
 import CreateVideo from './components/Forms/CreateVideo';
 import HomePage from './components/HomePage'
 import Navbar from './components/Navbar';
+import Videos from './components/Videos';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -31,27 +32,29 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <Navbar /> */}
       <Switch>
-        <Route path='/upload' exact={true}>
+        <Route exact path='/upload'>
           <Cloudinary />
         </Route>
-        <Route path='/login' exact={true}>
+        <Route exact path='/login'>
           <LoginForm />
         </Route>
-        <Route path='/sign-up' exact={true}>
+        <Route exact path='/sign-up'>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+        <ProtectedRoute exact path='/users'>
           <UsersList/>
         </ProtectedRoute>
-        <ProtectedRoute path='/user/channel' exact={true} >
+        <ProtectedRoute exact path='/user/channel'>
           <Channel />
         </ProtectedRoute>
-        <ProtectedRoute path='/user/channel/videos' exact={true} >
+        <ProtectedRoute exact path='/user/channel/videos'>
           <ManageVideos />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
+        <Route exact path='/videos/:id'>
+          <Videos />
+        </Route>
+        <Route exact path='/' >
           <HomePage />
         </Route>
       </Switch>
