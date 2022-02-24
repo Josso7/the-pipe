@@ -10,6 +10,7 @@
     "axios": "^0.26.0",
     "cloudinary": "^1.28.1",
     "cloudinary-core": "^2.12.3",
+    "dayjs": "^1.10.7",
     "http-proxy-middleware": "^1.0.5",
     "react": "^17.0.2",
     "react-cloudinary-upload-widget": "^1.4.4",

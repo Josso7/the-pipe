@@ -40,6 +40,7 @@
 
 .navbar-menu-button {
     all: unset;
+    margin-top: 2px;
 }
 
 .search-container {

@@ -35,18 +35,14 @@ function ManageVideos(){
           body: data
         });
         const file = await res.json();
-        console.log('----------- RESPONSE FROM CLOUDINARY ', file);
-        console.log('----------- FILE.SECURE_URL ', file.secure_url);
         dispatch(postVideo(file.secure_url, title, description));
 
       }
 
-    console.log('---------- REACT STATE videoFile', videoFile);
-
     return (
         <div id='portal'>
           <Navbar />
-            {/* <div>Hello from Manage Videos</div>
+            <div>Hello from Manage Videos</div>
             <input type='file'
             onChange={e => setVideoFile(e.target.files[0])}
             ></input>
@@ -55,7 +51,7 @@ function ManageVideos(){
                 onClick={uploadFile}
                 >
                 Upload Video
-                </button> */}
+                </button>
           <div style={BUTTON_WRAPPER_STYLES}>
             <button onClick={() => setIsOpen(true)}>Open Modal</button>
 

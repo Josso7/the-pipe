@@ -13,7 +13,6 @@ function CreateVideo({ setIsOpen }) {
 
   const uploadFile = async (e) => {
     e.preventDefault();
-    console.log('hello from upload file')
     const files = videoFile;
     const data = new FormData();
     data.append('file', files);
@@ -23,8 +22,6 @@ function CreateVideo({ setIsOpen }) {
       body: data
     });
     const file = await res.json();
-    console.log('----------- RESPONSE FROM CLOUDINARY ', file);
-    console.log('----------- FILE.SECURE_URL ', file.secure_url);
     dispatch(postVideo(file.secure_url, title, description, user.id));
     setIsOpen(false);
   }
