@@ -20,7 +20,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch(action.type){
       case GET_USERS: {
-          console.log(action.comments)
         return {
             ...state,
             entries: [...action.users.users]

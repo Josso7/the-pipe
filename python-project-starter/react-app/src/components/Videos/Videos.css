@@ -1,7 +1,7 @@
 .video-container {
     margin-top: 80px;
     margin-left: 90px;
-    width: 67%;
+    width: 68%;
     height: auto;
 }
 
@@ -14,6 +14,7 @@ video {
     font-size: 22px;
     margin-bottom: 0px;
     line-height: 0px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .video-details-container {
@@ -28,7 +29,8 @@ video {
     line-height: 0px;
     border-bottom: 1px solid lightgrey;
     padding-bottom: 10px;
-    width: 67%;
+    width: 68%;
+    font-family: 'Roboto', sans-serif;
 }
 
 .bullet-point{
@@ -43,10 +45,11 @@ video {
     align-items: center;
     height: 60px;
     justify-content: space-between;
-    width: 67%;
+    width: 68%;
     margin-left: 90px;
     border-bottom: 1px solid lightgrey;
     padding-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .user-icon {
@@ -55,9 +58,14 @@ video {
     background-color: #c2175b;
     min-width: 48px;
     height: 48px;
-    display: inline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.user-icon-text {
+    color: white;
+}
 .user-info {
     display: flex;
     flex-direction: column;
@@ -103,16 +111,14 @@ video {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-around;
 }
-
-.comment-info {
-    display: flex;
-    flex-direction: column;
-}
-
 
 .comment-info {
     margin-left: 15px;
+    margin-right: 39%;
+    min-width: 46%;
+    width: 100%;
 }
 
 #comment.user-icon {
@@ -132,11 +138,53 @@ video {
 }
 
 .user-comment-text {
-    /* display: flex; */
-    /* align-items: center;
-    justify-content: center; */
-    /* text-align: center; */
     margin: 0;
     color: white;
     font-size: 15px;
 }
+
+.user-name {
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}
+
+.date {
+    font-size: 12px;
+    margin-left: 4px;
+    color: #606060;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.comment {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.edit-comment-button-container {
+}
+
+.delete-comment-button-container {
+}
+
+/* .textarea[contenteditable]:empty::before {
+    content: var(--t);
+    color: gray;
+} */
+
+/* .textarea {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    resize: both;
+    min-height: 40px;
+    line-height: 20px;
+}
+
+.textarea {
+    border: 1px solid #ccc;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 1px 6px;
+  } */

@@ -3,8 +3,6 @@ from datetime import date, datetime
 
 
 def seed_videos():
-    todays_date = datetime.today()
-    print('-------------', todays_date)
     video1 = Video(
         user_id = 1, title='1 Second Video', views=34, description='This is a 1 second video', video_url='https://res.cloudinary.com/dbxywjkcf/video/upload/v1645152403/db_seeders/1_Second_Video-_480p_yht7uh.mp4', created_at_date=date.today(), created_at_time=datetime.utcnow()
     )

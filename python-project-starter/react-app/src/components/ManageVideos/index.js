@@ -42,7 +42,7 @@ function ManageVideos(){
     return (
         <div id='portal'>
           <Navbar />
-            {/* <div>Hello from Manage Videos</div>
+            <div>Hello from Manage Videos</div>
             <input type='file'
             onChange={e => setVideoFile(e.target.files[0])}
             ></input>
@@ -51,7 +51,7 @@ function ManageVideos(){
                 onClick={uploadFile}
                 >
                 Upload Video
-                </button> */}
+                </button>
           <div style={BUTTON_WRAPPER_STYLES}>
             <button onClick={() => setIsOpen(true)}>Open Modal</button>
 
