@@ -1,9 +1,9 @@
 const GET_COMMENTS = '/comment/GET_COMMENT';
 const ADD_COMMENT = '/comment/ADD_COMMENT';
 
-const load = (comments) => ({
+const load = (allComments) => ({
     type: GET_COMMENTS,
-    comments
+    allComments
 });
 
 const add = (comment) => ({
@@ -57,8 +57,9 @@ export const getComments = (videoId) => async dispatch => {
     const response = await fetch(`/api/videos/${videoId}/video-comments`);
 
     if(response.ok){
-        const comments = await response.json();
-        dispatch(load(comments))
+        const allComments = await response.json();
+        dispatch(load(allComments))
+        console.log('sent comments');
     }
 }
 
@@ -81,7 +82,7 @@ const reducer = (state = initialState, action) => {
       case GET_COMMENTS: {
         return {
             ...state,
-            entries: [...action.comments.comments]
+            entries: [...action.allComments.comments]
         }
       }
       case ADD_COMMENT: {

@@ -6,20 +6,23 @@ import { useEffect, useState } from 'react';
 import { getVideos } from '../../store/video';
 import { getComments, postComment, editUserComment, deleteUserComment } from '../../store/comment';
 import { getUsers } from '../../store/users';
+
 function Videos(){
     const history = useHistory();
     const dispatch = useDispatch();
     const { id } = useParams();
     let videoSrc;
+    let testUser;
     const videos = useSelector(state => state?.videos?.entries)
     const user = useSelector(state => state?.session?.user)
-    const users = useSelector(state => state?.users.entries)
+    const users = useSelector(state => state?.users?.entries)
     const comments = useSelector(state => state?.comments?.entries)
     const [userComment, setUserComment] = useState('');
     const [editComment, setEditComment] = useState(0);
     const [addVideoComment, setAddVideoComment] = useState('');
 
-    // let editCommentStyling = {}
+    console.log(users);
+    console.log(comments);
     let textarea;
     let heightLimit;
 
@@ -35,6 +38,11 @@ function Videos(){
 
     if (videos && !videoSrc) {
         videoSrc = videos.find(video => video.id == id)
+    }
+
+    if (users && testUser && !testUser) {
+        testUser = users.find(element => element.id == videoSrc.user_id)
+        console.log(testUser)
     }
 
     const convertDatetoDateWithoutTime = (video) => {
@@ -112,17 +120,17 @@ function Videos(){
         </div>
         <div className='video-user-info-container'>
             <div className='user-icon'>
-                <div className='user-icon-text'>{user && user.username[0]}</div>
+                {testUser && <div className='user-icon-text'>{testUser.username[0]}</div>}
             </div>
             <div className='user-info'>
-                {user && <p className='username'>{user.username}</p>}
-                {user && <p className='subscriber-count'>{user.subscriber_count} subscribers</p>}
+                {videoSrc && users && <p className='username'>{users.find(element => element.id === videoSrc.user_id).username}</p>}
+                {videoSrc && users && <p className='subscriber-count'>{users.find(element => element.id === videoSrc.user_id).subscriber_count} subscribers</p>}
             </div>
             <div className='subscribe-button'>
                 <div className='subscribe-text'>SUBSCRIBE</div>
             </div>
         </div>
-        <div className='add-comment'>
+        {user && <div className='add-comment'>
             <input
             className='comment-input'
             type='text'
@@ -134,34 +142,24 @@ function Videos(){
             onClick={addComment}
             >Comment
             </button>
-        </div>
-        <div className='comments-container'>
+        </div>}
+        {comments && <div className='comments-container'>
             {comments && comments.map(comment => (
             <div className='single-comment' key={comment.id}>
                 <div className='user-icon'
                 id='comment'
                 >
-                    {users && <p className='user-comment-text'>{users.find(user => user.id === comment.user_id).username[0].toUpperCase()
+                    {users && <p className='user-comment-text'>{users?.find(element => element.id === comment.user_id).username[0].toUpperCase()
                     }</p>}
                 </div>
                 <div className='comment-info'>
                     <div className='user-name-date'>
-                        {users && <div className='user-name'>{users.find(user => user.id === comment.user_id).username}
-                            {<span className='date'>{convertDatetoDateWithoutTime(comment).created_at_date}</span>}
+                        {users && <div className='user-name'>{users?.find(element => element?.id == comment?.user_id).username}
+                            {<span className='date'>{convertDatetoDateWithoutTime(comment)?.created_at_date}</span>}
                         </div>}
 
                     </div>
                     <div>
-                        {/* {editComment === comment.id &&
-                        <p><strong>Solution with span:</strong>
-                        <span
-                        className="textarea"
-                        onInput={e => console.log('Text inside div', e.currentTarget.textContent)}
-                        onBlur={e => setUserComment(e.currentTarget.textContent)}
-                        role="textbox"
-                        contentEditable='true'
-                        style={editCommentStyling}
-                        ></span></p>} */}
                         {editComment === comment.id &&
                         <textarea
                         autoFocus
@@ -181,7 +179,7 @@ function Videos(){
                         {comment.content}
                     </div>}
                 </div>
-                {comment.user_id === user.id && <div className='edit-comment-button-container'>
+                {user && comment.user_id === user.id && <div className='edit-comment-button-container'>
                     <button className='edit-button' key={comment.id}
                     onClick={() => {
                         editCommentInput(comment.id)
@@ -189,13 +187,13 @@ function Videos(){
                     }}
                     >Edit</button>
                 </div>}
-                <div className='delete-comment-button-container'>
+                {user && comment.user_id === user.id && <div className='delete-comment-button-container'>
                     <button className='delete-button'
                     onClick={() => handleDelete(comment.id)}>Delete</button>
-                </div>
+                </div>}
             </div>
             ))}
-        </div>
+        </div>}
         </>
     )
 }
