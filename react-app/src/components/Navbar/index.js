@@ -40,7 +40,7 @@ function Navbar(){
         <>
         </>
     )
-    
+
     return (
 
         <div id='navbar-container'>
@@ -78,6 +78,12 @@ function Navbar(){
             </button>
             {userMenu &&
             <div className='user-menu-popup'>
+                <div className='user-info-container'>
+                    <div className='user-icon-popup'>
+                        <div className='user-icon-popup-text'>{user.username[0]}</div>
+                    </div>
+                    <div className='username-popup-text'>{user.username}</div>
+                </div>
                 <NavLink to='/user/channel'><button className='user-menu-option' id='channel-button'>Your channel</button></NavLink>
                 <button
                 className='user-menu-option'
