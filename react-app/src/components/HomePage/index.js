@@ -1,4 +1,4 @@
-import { useSelector, useDispatch, useStore } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getVideos } from '../../store/video';
@@ -37,19 +37,19 @@ function HomePage(){
     return (
         <>
         <Navbar />
-        <div></div>
         <div className='videos-container'>
             {videos && videos.map(video => {
                 return (
                 <>
                 <div key={video.id} className='single-video-container'>
-                    <NavLink to={`/videos/${video.id}`}>
+                    <NavLink classname='a-link' to={`/videos/${video.id}`}>
                     <video className='video'
                     src={video.video_url}
                     ></video>
                     </NavLink>
                     <div className='video-details'>
-                        <div className='user-icon'>
+                        <div className='user-icon'
+                        id='user-icon-homepage'>
                             <div className='user-icon-text'>
                                 {users && users.find(element => element.id == video.user_id).username[0].toUpperCase()}
                             </div>
@@ -73,23 +73,6 @@ function HomePage(){
                             </div>
                         </div>
                         </div>
-                        {/* <div className='title'>
-                            {video.title}
-                        </div>
-                        <div className='video-username'>
-                            {users && users.find(element => element.id == video.user_id).username}
-                        </div>
-                        <div className='views-created-at-date-container'>
-                            <div className='video-views'>
-                                {videos && video.views}
-                            </div>
-                            <div className='bullet-point'>
-                                •
-                            </div>
-                            <div className='video-created-at-date'>
-                                {videos && convertDatetoDateWithoutTime(video).created_at_date}
-                            </div>
-                        </div> */}
                     </div>
                 </div>
                 </>

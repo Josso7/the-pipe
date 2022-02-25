@@ -1,21 +1,29 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { postVideo } from '../../store/video'
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { getVideos, postVideo } from '../../store/video'
 import Modal from '../Modal'
 import CreateVideo from '../Forms/CreateVideo';
 import Navbar from '../Navbar';
+import './ManageVideos.css';
 
 function ManageVideos(){
     const dispatch = useDispatch();
+    const user = useSelector(state => state?.session?.user);
+    const videos = useSelector(state => state?.videos?.entries);
 
     const [videoFile, setVideoFile] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [isOpen, setIsOpen] = useState(false)
 
+    useEffect(() => {
+      dispatch(getVideos())
+    }, [])
+
     const BUTTON_WRAPPER_STYLES = {
-      position: 'relative',
-      zIndex: 1
+      // position: 'relative',
+      // zIndex: 1
     }
 
     const OTHER_CONTENT_STYLES = {
@@ -42,22 +50,33 @@ function ManageVideos(){
     return (
         <div id='portal'>
           <Navbar />
-            <div>Hello from Manage Videos</div>
-            <input type='file'
-            onChange={e => setVideoFile(e.target.files[0])}
-            ></input>
-                <button
-                type='submit'
-                onClick={uploadFile}
-                >
-                Upload Video
-                </button>
-          <div style={BUTTON_WRAPPER_STYLES}>
-            <button onClick={() => setIsOpen(true)}>Open Modal</button>
-
-            <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-              <CreateVideo setIsOpen={setIsOpen}/>
-            </Modal>
+          <div className='top-bar'>
+            <div className='channel-content-text'>
+              Channel content
+            </div>
+            <div className='manage-videos-container'>
+            {videos &&
+              videos
+              .filter((element) => element.user_id == user.id)
+                .map((video) => (
+                  <div className='single-manage-video'>
+                      <NavLink to=''>
+                        <video
+                        className='manage-video'
+                        src={video.video_url}>
+                        </video>
+                      </NavLink>
+                  </div>
+                ))}
+            </div>
+            <div className='upload-button-modal-container' style={BUTTON_WRAPPER_STYLES}>
+              <button className='upload-button-modal'
+              onClick={() => setIsOpen(true)}>
+              UPLOAD</button>
+              <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+                <CreateVideo setIsOpen={setIsOpen}/>
+              </Modal>
+            </div>
           </div>
         </div>
     );

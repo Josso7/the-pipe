@@ -49,7 +49,7 @@ function Navbar(){
                     <img src={HamburgerMenuIcon}></img>
                 </button>
                 <Link to='/'>
-                    <img id='image-yt-logo' src={YouTubeHomeLogo}></img>
+                    <img title='ThePipe Home' id='image-yt-logo' src={YouTubeHomeLogo}></img>
                 </Link>
             </div>
             <div className='search-container'>
@@ -58,17 +58,19 @@ function Navbar(){
                     type='text'
                     placeholder='Search'>
                     </input>
-                    <div
+                    <button
                     // onClick={handleSearch}
+                    title='Search'
                     className='searchbar-icon-container'>
                         <img
                         className='searchbar-icon'
                         src={SearchbarIcon}>
                         </img>
-                    </div>
+                    </button>
             </div>
             {!user && <NavLink to='/login'><button className='sign-in-button'>Sign in</button></NavLink>}
             <button
+            title='Open User Menu'
             className='navbar-menu-button'
             id='user-menu-button'
             onClick={handleClick}>
@@ -84,7 +86,7 @@ function Navbar(){
                     </div>
                     <div className='username-popup-text'>{user.username}</div>
                 </div>
-                <NavLink to='/user/channel'><button className='user-menu-option' id='channel-button'>Your channel</button></NavLink>
+                <NavLink to='/user/channel'><button className='user-menu-option' id='navbar-channel-button'>Your channel</button></NavLink>
                 <button
                 className='user-menu-option'
                 id='logout-button'

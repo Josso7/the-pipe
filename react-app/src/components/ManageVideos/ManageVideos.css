@@ -1,0 +1,40 @@
+.upload-button-modal {
+    margin-left: 25%;
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 3%;
+    width: 150px;
+    min-width: 150px;
+    height: 37px;
+    background-color: #065fd4;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+    color: white;
+}
+
+.upload-button-modal:hover{
+    cursor: pointer;
+}
+
+.top-bar {
+    font-family: 'Roboto', 'sans-serif';
+    margin-left: 200px;
+    margin-top: 56px;
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    align-items: center;
+    border: 1px solid rgba(0,0,0,0.1);
+
+}
+
+.upload-button-modal-container {
+    margin-left: 65%;
+}
+
+.channel-content-text {
+    font-size: 25px;
+    font-weight: 500;
+    margin-left: 30px;
+}
