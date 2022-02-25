@@ -120,11 +120,11 @@ function Videos(){
         </div>
         <div className='video-user-info-container'>
             <div className='user-icon'>
-                {testUser && <div className='user-icon-text'>{testUser.username[0]}</div>}
+                {users && videoSrc && <div className='user-icon-text'>{users?.find(element => element.id == videoSrc.user_id).username[0].toUpperCase()}</div>}
             </div>
             <div className='user-info'>
-                {videoSrc && users && <p className='username'>{users.find(element => element.id === videoSrc.user_id).username}</p>}
-                {videoSrc && users && <p className='subscriber-count'>{users.find(element => element.id === videoSrc.user_id).subscriber_count} subscribers</p>}
+                {users && videoSrc && <p className='username'>{users?.find(element => element.id == videoSrc.user_id).username}</p>}
+                {users && videoSrc && <p className='subscriber-count'>{users?.find(element => element.id === videoSrc.user_id).subscriber_count} subscribers</p>}
             </div>
             <div className='subscribe-button'>
                 <div className='subscribe-text'>SUBSCRIBE</div>
