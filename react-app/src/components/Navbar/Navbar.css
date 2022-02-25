@@ -86,7 +86,6 @@
 
 a {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
@@ -106,4 +105,78 @@ a {
 .user-menu-option {
     margin-left: 15px;
     all: unset;
+    text-decoration: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 26px;
+    font-family: 'Roboto','Noto',sans-serif;
+    font-size: 14px;
+}
+
+.user-menu-option:hover {
+    background-color: lightgrey;
+}
+
+a:link{
+
+    text-decoration: none;
+}
+
+#logout-button{
+    display: flex;
+    justify-content: center;
+    line-height: 26px;
+    box-sizing: border-box;
+    color: black;
+}
+
+#logout-button:hover{
+    background-color: lightgrey;
+}
+
+#channel-button {
+    color: black;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.username-popup-text {
+    display: flex;
+    align-items: center;
+    margin-left: 17px;
+    width: 100%;
+    height: 60px;
+    font-family: 'Roboto','Noto',sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.user-icon-popup{
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    min-width: 40px;
+    height: 40px;
+    background-color: #c2175b;
+    border: 0px transparent;
+    border-radius: 50%;
+}
+
+.user-icon-popup-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+.user-info-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid lightgrey;
 }
