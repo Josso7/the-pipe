@@ -29,7 +29,7 @@
 }
 
 .upload-button-modal-container {
-    margin-left: 75%;
+    margin-left: 71%;
 }
 
 .channel-content-text {
@@ -43,23 +43,26 @@
 }
 
 .single-manage-video {
-    width: 10%;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    width: 105px;
+    height: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-left: 25px;
+    box-sizing: border-box;
 }
 
 .video-wrapper {
     width: 100%;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     border-left: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .video-wrapper:hover {
     width: 100%;
-
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    border-left: 1px solid rgba(0,0,0,0.1);
+    background: #e6e6e6;
 }
 
 .channel-content-header {
@@ -78,11 +81,14 @@
 }
 
 .video-text-header {
-    margin-left: 5%;
+    margin-left: 1.9%;
+    /* width: calc(100% - 105px); */
+    display: inline-block;
+
 }
 
 .date-uploaded-header {
-    margin-left: 45%;
+    margin-left: 48%;
 }
 
 .views-header {
@@ -91,4 +97,47 @@
 
 .comment-total-header {
     margin-left: 15%;
+}
+
+.single-video-date {
+    margin-left:  12.1%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 40px;
+    width: 100px;
+    font-family: 'Roboto', 'sans-serif';
+}
+
+.single-video-title {
+    width: 30%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Roboto', 'sans-serif';
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.single-video-views {
+    margin-left: 8.5%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 40px;
+    width: 100px;
+    font-family: 'Roboto', 'sans-serif';
+}
+
+.single-video-comments {
+    margin-left: 13%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 40px;
+    width: 100px;
+    font-family: 'Roboto', 'sans-serif';
 }
