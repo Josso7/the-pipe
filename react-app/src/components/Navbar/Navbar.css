@@ -20,6 +20,7 @@
     padding: 0 16px;
     z-index: 5;
     background-color: white;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .user-menu-icon {

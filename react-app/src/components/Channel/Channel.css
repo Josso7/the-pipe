@@ -75,11 +75,9 @@ body {
 
 .channel-user-subscribers {
     color: #606060;
-    /* font-weight: 500; */
 }
 
 .manage-videos-button{
-    margin-left: 50%;
     display: flex;
     border: 0px solid transparent;
     border-radius: 3%;
@@ -91,6 +89,10 @@ body {
     align-items: center;
     font-family: 'Roboto', 'sans-serif';
     color: white;
+}
+
+.manage-videos-button-wrapper {
+    margin-left: 70%;
 }
 
 a {

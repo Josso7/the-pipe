@@ -32,9 +32,9 @@ function Videos(){
         dispatch(getUsers());
     }, [])
 
-    // useEffect(() => {
-    //     window.scrollTo(0,document.body.scrollHeight);
-    // }, [history])
+    useEffect(() => {
+        window.scrollTo(0,document.body.scrollHeight);
+    }, [comments])
 
     if (videos && !videoSrc) {
         videoSrc = videos.find(video => video.id == id)

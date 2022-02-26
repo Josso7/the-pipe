@@ -50,9 +50,12 @@ function Channel() {
                     {user && user.subscriber_count} subscribers
                 </div>
             </div>
+            <NavLink
+            className='manage-videos-button-wrapper'
+            to="/user/channel/videos">
             <button className='manage-videos-button'>
-                <NavLink to="/user/channel/videos">MANAGE VIDEOS</NavLink>
-            </button>
+            MANAGE VIDEOS</button>
+            </NavLink>
       </div>
       <div className='channel-nav'>
 
