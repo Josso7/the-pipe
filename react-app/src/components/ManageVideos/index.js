@@ -54,21 +54,6 @@ function ManageVideos(){
             <div className='channel-content-text'>
               Channel content
             </div>
-            <div className='manage-videos-container'>
-            {videos &&
-              videos
-              .filter((element) => element.user_id == user.id)
-                .map((video) => (
-                  <div className='single-manage-video'>
-                      <NavLink to=''>
-                        <video
-                        className='manage-video'
-                        src={video.video_url}>
-                        </video>
-                      </NavLink>
-                  </div>
-                ))}
-            </div>
             <div className='upload-button-modal-container' style={BUTTON_WRAPPER_STYLES}>
               <button className='upload-button-modal'
               onClick={() => setIsOpen(true)}>
@@ -78,6 +63,37 @@ function ManageVideos(){
               </Modal>
             </div>
           </div>
+          <div className='channel-content-header'>
+            <div className='video-text-header'>
+              Video
+            </div>
+            <div className='date-uploaded-header'>
+              Date
+            </div>
+            <div className='views-header'>
+              Views
+            </div>
+            <div className='comment-total-header'>
+              Comments
+            </div>
+          </div>
+            <div className='manage-videos-container'>
+            {videos &&
+              videos
+              .filter((element) => element.user_id == user.id)
+                .map((video) => (
+                  <div className='video-wrapper'>
+                    <div className='single-manage-video'>
+                        <NavLink to=''>
+                          <video
+                          className='manage-video'
+                          src={video.video_url}>
+                          </video>
+                        </NavLink>
+                    </div>
+                  </div>
+                ))}
+            </div>
         </div>
     );
 };
