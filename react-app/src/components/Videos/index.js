@@ -21,8 +21,6 @@ function Videos(){
     const [editComment, setEditComment] = useState(0);
     const [addVideoComment, setAddVideoComment] = useState('');
 
-    console.log(users);
-    console.log(comments);
     let textarea;
     let heightLimit;
 
@@ -31,10 +29,6 @@ function Videos(){
         dispatch(getComments(id));
         dispatch(getUsers());
     }, [])
-
-    // useEffect(() => {
-    //     window.scrollTo(0,document.body.scrollHeight);
-    // }, [history])
 
     if (videos && !videoSrc) {
         videoSrc = videos.find(video => video.id == id)
@@ -64,8 +58,9 @@ function Videos(){
 
     const addComment = () => {
         dispatch(postComment(addVideoComment, videoSrc.id, user.id));
-        history.push(`/videos/${videoSrc.id}`)
-        // window.scrollTo(0,document.body.scrollHeight);
+        setTimeout(() => {
+            window.scrollTo(0,document.body.scrollHeight);
+        }, 150 )
     }
 
     const handleEdit = () => {
@@ -100,12 +95,12 @@ function Videos(){
         };
     }
 
-
     return (
         <>
         <Navbar/>
         <div className='video-container'>
             {videoSrc && <video
+            autoplay
             controls
             src={videoSrc.video_url}>
             </video>}

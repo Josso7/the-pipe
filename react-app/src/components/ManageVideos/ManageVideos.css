@@ -1,0 +1,94 @@
+.upload-button-modal {
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 3%;
+    width: 150px;
+    min-width: 150px;
+    height: 37px;
+    background-color: #065fd4;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+    color: white;
+}
+
+.upload-button-modal:hover{
+    cursor: pointer;
+}
+
+.top-bar {
+    font-family: 'Roboto', 'sans-serif';
+    margin-left: 200px;
+    margin-top: 56px;
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-left: 1px solid rgba(0,0,0,0.1);
+}
+
+.upload-button-modal-container {
+    margin-left: 75%;
+}
+
+.channel-content-text {
+    font-size: 25px;
+    font-weight: 500;
+    margin-left: 30px;
+}
+
+.manage-videos-container {
+    margin-left: 200px;
+}
+
+.single-manage-video {
+    width: 10%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 25px;
+}
+
+.video-wrapper {
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-left: 1px solid rgba(0,0,0,0.1);
+}
+
+.video-wrapper:hover {
+    width: 100%;
+
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-left: 1px solid rgba(0,0,0,0.1);
+}
+
+.channel-content-header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 200px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-left: 1px solid rgba(0,0,0,0.1);
+    font-family: 'Roboto', 'sans-serif';
+    color: #606060;
+    font-weight: 450;
+    font-size: 14px;
+}
+
+.video-text-header {
+    margin-left: 5%;
+}
+
+.date-uploaded-header {
+    margin-left: 45%;
+}
+
+.views-header {
+    margin-left: 15%;
+}
+
+.comment-total-header {
+    margin-left: 15%;
+}
