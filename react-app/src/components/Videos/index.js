@@ -60,7 +60,7 @@ function Videos(){
         dispatch(postComment(addVideoComment, videoSrc.id, user.id));
         setTimeout(() => {
             window.scrollTo(0,document.body.scrollHeight);
-        }, 150 )
+        }, 250 )
     }
 
     const handleEdit = () => {
