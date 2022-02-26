@@ -141,3 +141,8 @@
     width: 100px;
     font-family: 'Roboto', 'sans-serif';
 }
+
+.modal {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 10%;
+}

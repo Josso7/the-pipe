@@ -65,7 +65,9 @@ function ManageVideos(){
               <button className='upload-button-modal'
               onClick={() => setIsOpen(true)}>
               UPLOAD</button>
-              <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+              <Modal
+              portalClassName="modal"
+              open={isOpen} onClose={() => setIsOpen(false)}>
                 <CreateVideo setIsOpen={setIsOpen}/>
               </Modal>
             </div>
