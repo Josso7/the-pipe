@@ -59,7 +59,15 @@ export const getComments = (videoId) => async dispatch => {
     if(response.ok){
         const allComments = await response.json();
         dispatch(load(allComments))
-        console.log('sent comments');
+    }
+}
+
+export const getAllComments = () => async dispatch => {
+    const response = await fetch(`/api/videos/video-comments`);
+
+    if(response.ok){
+        const allComments = await response.json();
+        dispatch(load(allComments))
     }
 }
 

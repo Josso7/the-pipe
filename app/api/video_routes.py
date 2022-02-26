@@ -47,6 +47,11 @@ def get_comments(video_id):
     comments = db.session.query(Comment).filter(video_id == Comment.video_id).order_by(Comment.id).all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
+@video_routes.route('/video-comments', methods=['GET'])
+def get_all_comments():
+    comments = db.session.query(Comment).all()
+    return {'comments': [comment.to_dict() for comment in comments]}
+
 @video_routes.route('/<int:video_id>/video-comments/<int:comment_id>', methods=['PUT'])
 @login_required
 def edit_comment(video_id, comment_id):
