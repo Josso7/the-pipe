@@ -60,7 +60,7 @@ function Videos(){
         dispatch(postComment(addVideoComment, videoSrc.id, user.id));
         setTimeout(() => {
             window.scrollTo(0,document.body.scrollHeight);
-        }, 150 )
+        }, 250 )
     }
 
     const handleEdit = () => {
@@ -85,8 +85,6 @@ function Videos(){
         textarea = document.getElementById("textarea");
         heightLimit = 200; /* Maximum height: 200px */
     }
-    // textarea = document.getElementById("textarea");
-    // let heightLimit = 200; /* Maximum height: 200px */
 
     if(textarea){
         textarea.oninput = function() {
