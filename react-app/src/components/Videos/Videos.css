@@ -1,4 +1,10 @@
+.body {
+    margin:0px;
+}
+
 .video-container {
+    overflow-y: hidden;
+    overflow-x: hidden;
     margin-top: 80px;
     margin-left: 90px;
     width: 68%;
@@ -181,6 +187,11 @@ video {
     border-left: none;
     border-right: none;
     border-bottom: 1px solid rgb(144,144,144);
+}
+
+.comment-input.active {
+    border-bottom: 2px solid rgb(3,3,3);
+    transition: border-bottom .15s ease-in;
 }
 
 /* .textarea[contenteditable]:empty::before {

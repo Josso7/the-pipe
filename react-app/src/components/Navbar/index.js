@@ -45,9 +45,9 @@ function Navbar(){
 
         <div id='navbar-container'>
             <div className='navbar-container-start'>
-                <button className='navbar-menu-button'>
+                {/* <button className='navbar-menu-button'>
                     <img src={HamburgerMenuIcon}></img>
-                </button>
+                </button> */}
                 <Link to='/'>
                     <img title='ThePipe Home' id='image-yt-logo' src={YouTubeHomeLogo}></img>
                 </Link>
@@ -68,16 +68,16 @@ function Navbar(){
                         </img>
                     </button>
             </div>
-            {!user && <NavLink to='/login'><button className='sign-in-button'>Sign in</button></NavLink>}
-            <button
+            {!user && <NavLink className='login-button-wrapper' to='/login'><button className='sign-in-button'>SIGN IN</button></NavLink>}
+            {user && <button
             title='Open User Menu'
             className='navbar-menu-button'
             id='user-menu-button'
             onClick={handleClick}>
                 {user && <div className='user-menu-icon'>
-                    {user && <p className='user-menu-text'>{user.username[0]}</p>}
-                </div>}
-            </button>
+                        {user && <p className='user-menu-text'>{user.username[0]}</p>}
+                    </div>}
+            </button>}
             {userMenu &&
             <div className='user-menu-popup'>
                 <div className='user-info-container'>

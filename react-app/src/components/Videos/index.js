@@ -20,26 +20,23 @@ function Videos(){
     const [userComment, setUserComment] = useState('');
     const [editComment, setEditComment] = useState(0);
     const [addVideoComment, setAddVideoComment] = useState('');
+    const [openAddComment, setOpenAddComment] = useState(false);
     const [errors, setErrors] = useState('');
 
 
     let textarea;
     let heightLimit;
     let textareaAddComment;
-    let rootDiv = document.getElementById('root');
-
-    if(textareaAddComment) {
-        textareaAddComment = document.getElementById('textarea-add-comment-input');
-        console.log(textareaAddComment);
-        textareaAddComment.addEventListener('click', (e) => setTextareaCommentActive(e))
-    }
-    
-    if(user) document.getElementById('add-comment-button-id');
+    let rootDiv;
 
     useEffect(() => {
         dispatch(getVideos());
         dispatch(getComments(id));
         dispatch(getUsers());
+        textareaAddComment = document.getElementById('textarea-add-comment-input');
+        textareaAddComment.addEventListener('click', setTextareaCommentActive)
+        rootDiv = document.getElementById('root');
+        rootDiv.addEventListener('click', (e) => setTextareaCommentInactive(e) )
     }, [])
 
     if (videos && !videoSrc) {
@@ -51,11 +48,12 @@ function Videos(){
         console.log(testUser)
     }
 
-    const setTextareaCommentActive = (e) => {
-        e.classList.add('active');
+    const setTextareaCommentActive = () => {
+       textareaAddComment.classList.add('active');
     }
 
     const setTextareaCommentInactive = (e) => {
+        if(e.target.className !== 'comment-input active')
         textareaAddComment.classList.remove('active');
     }
 

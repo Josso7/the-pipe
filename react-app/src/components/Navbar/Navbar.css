@@ -1,3 +1,7 @@
+body {
+    padding:0;margin:0;
+}
+
 #image-yt-logo {
     width: 6rem;
     padding: 18px 14px 18px 16px;
@@ -16,8 +20,7 @@
     justify-content: space-between;
     width: 100%;
     height: 56px;
-    margin: 0;
-    padding: 0 16px;
+    /* margin: 0 auto; */
     z-index: 5;
     background-color: white;
     border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -25,7 +28,7 @@
 
 .user-menu-icon {
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
     width: 32px;
     height: 32px;
     background-color: #c2175b;
@@ -34,9 +37,6 @@
 }
 
 #user-menu-button {
-    all: unset;
-    position: relative;
-    right: 50px;
     padding: 1px 6px;
 }
 
@@ -49,8 +49,12 @@
 }
 
 .navbar-menu-button {
-    all: unset;
     margin-top: 2px;
+    width: 150px;
+    margin-right: 2%;
+    margin-left: 18%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .search-container {
@@ -61,6 +65,7 @@
     display: flex;
     flex-direction: row;
     box-shadow: inset 0 1px 2px #eee;
+    margin-left: 30%;
     /* align-items: center; */
 }
 
@@ -209,4 +214,23 @@ a:visited{
     align-items: center;
     justify-content: center;
     border-bottom: 1px solid lightgrey;
+}
+
+.sign-in-button {
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 3%;
+    width: 150px;
+    min-width: 150px;
+    height: 37px;
+    background-color: #065fd4;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+    color: white;
+}
+
+.login-button-wrapper {
+    margin-left: 17.75%;
+    margin-right: 2%;
 }
