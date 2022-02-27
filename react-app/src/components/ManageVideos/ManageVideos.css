@@ -18,7 +18,7 @@
 
 .top-bar {
     font-family: 'Roboto', 'sans-serif';
-    margin-left: 200px;
+    margin-left: 5%;
     margin-top: 56px;
     display: flex;
     flex-direction: row;
@@ -26,6 +26,8 @@
     align-items: center;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     border-left: 1px solid rgba(0,0,0,0.1);
+    border-right: 1px solid rgba(0,0,0,0.1);
+    width: 90%;
 }
 
 .upload-button-modal-container {
@@ -39,7 +41,8 @@
 }
 
 .manage-videos-container {
-    margin-left: 200px;
+    margin-left: 5%;
+    width: 90%;
 }
 
 .single-manage-video {
@@ -55,6 +58,7 @@
     width: 100%;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     border-left: 1px solid rgba(0,0,0,0.1);
+    border-right: 1px solid rgba(0,0,0,0.1);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -71,13 +75,15 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 200px;
+    margin-left: 5%;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     border-left: 1px solid rgba(0,0,0,0.1);
+    border-right: 1px solid rgba(0,0,0,0.1);
     font-family: 'Roboto', 'sans-serif';
     color: #606060;
     font-weight: 450;
     font-size: 14px;
+    width: 90%;
 }
 
 .video-text-header {

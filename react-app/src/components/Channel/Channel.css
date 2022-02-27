@@ -1,7 +1,7 @@
 .videos-container-channel {
     background: #e6e6e6;
     display: flex;
-    margin-left: 200px;
+    margin-left: 5%;
     width: 90%;
     padding: 0;
     flex-direction: row !important;
@@ -31,11 +31,11 @@ body {
     flex-direction: row;
     align-items: center;
     margin-top: 56px;
-    margin-left: 200px;
+    margin-left: 5%;
     font-family: 'Roboto', 'sans-serif';
     background: #f9f9f9;
     height: 200px;
-
+    width:90%;
 }
 
 .channel-user-icon {

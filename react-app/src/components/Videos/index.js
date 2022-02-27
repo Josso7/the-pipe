@@ -20,15 +20,29 @@ function Videos(){
     const [userComment, setUserComment] = useState('');
     const [editComment, setEditComment] = useState(0);
     const [addVideoComment, setAddVideoComment] = useState('');
+    const [openAddComment, setOpenAddComment] = useState(false);
+    const [errors, setErrors] = useState('');
+
 
     let textarea;
     let heightLimit;
+    let textareaAddComment;
+    let rootDiv;
 
     useEffect(() => {
         dispatch(getVideos());
         dispatch(getComments(id));
         dispatch(getUsers());
+        textareaAddComment = document.getElementById('textarea-add-comment-input');
+        document.body.addEventListener('keydown',(e) => submitCommentOnEnter(e))
+        textareaAddComment.addEventListener('click', setTextareaCommentActive)
+        rootDiv = document.getElementById('root');
+        rootDiv.addEventListener('click', (e) => setTextareaCommentInactive(e) )
     }, [])
+
+    // useEffect(() => {
+    //     if(userComment) setOpenAddComment(true);
+    // },[userComment])
 
     if (videos && !videoSrc) {
         videoSrc = videos.find(video => video.id == id)
@@ -37,6 +51,22 @@ function Videos(){
     if (users && testUser && !testUser) {
         testUser = users.find(element => element.id == videoSrc.user_id)
         console.log(testUser)
+    }
+
+    const setTextareaCommentActive = () => {
+       textareaAddComment.classList.add('active');
+       setOpenAddComment(true);
+    }
+
+    const setTextareaCommentInactive = (e) => {
+        if(e.target.className !== 'comment-input active')
+        textareaAddComment.classList.remove('active');
+    }
+
+    const submitCommentOnEnter = (e) => {
+        e.preventDefault();
+        console.log(e.code);
+        if(e.code === 'Enter') addComment();
     }
 
     const convertDatetoDateWithoutTime = (video) => {
@@ -58,9 +88,7 @@ function Videos(){
 
     const addComment = () => {
         dispatch(postComment(addVideoComment, videoSrc.id, user.id));
-        setTimeout(() => {
-            window.scrollTo(0,document.body.scrollHeight);
-        }, 250 )
+        setAddVideoComment('');
     }
 
     const handleEdit = () => {
@@ -76,14 +104,26 @@ function Videos(){
         setEditComment(commentId);
     }
 
+    const cancelOnClick = () => {
+        setOpenAddComment(false);
+        setAddVideoComment('');
+    }
 
     if(videoSrc) {
         videoSrc = convertDatetoDateWithoutTime(videoSrc);
     }
 
     if(editComment !== 0){
-        textarea = document.getElementById("textarea");
+        textarea = document.getElementById("textarea-add-comment-input");
         heightLimit = 200; /* Maximum height: 200px */
+    }
+
+    if(textareaAddComment){
+        textareaAddComment.oninput = function() {
+            let heightLimit = 1000;
+            textareaAddComment.style.height = ""; /* Reset the height*/
+            textareaAddComment.style.height = Math.min(textareaAddComment.scrollHeight, heightLimit) + "px";
+        };
     }
 
     if(textarea){
@@ -98,7 +138,7 @@ function Videos(){
         <Navbar/>
         <div className='video-container'>
             {videoSrc && <video
-            autoplay
+            autoPlay
             controls
             src={videoSrc.video_url}>
             </video>}
@@ -123,18 +163,41 @@ function Videos(){
                 <div className='subscribe-text'>SUBSCRIBE</div>
             </div>
         </div>
-        {user && <div className='add-comment'>
-            <input
-            className='comment-input'
-            type='text'
-            placeholder='Add a comment...'
-            value={addVideoComment}
-            onChange={(e) => setAddVideoComment(e.target.value)}>
-            </input>
-            <button
-            onClick={addComment}
-            >Comment
-            </button>
+        {videoSrc && <div
+            className='comments-counter'>
+                {comments && comments.length} {comments && comments.length === 1 ? 'Comment' : 'Comments'}
+            </div>}
+        {user && <div className='add-comment-wrapper'>
+            <div className='add-comment'>
+                <div
+                className='user-icon'
+                id='user-icon-videos'>
+                    <div className='user-icon-videos-text'>
+                        {user.username[0].toUpperCase()}
+                    </div>
+                </div>
+                <textarea
+                id='textarea-add-comment-input'
+                className='comment-input'
+                placeholder='Add a comment...'
+                value={addVideoComment}
+                onChange={(e) => setAddVideoComment(e.target.value)}>
+                </textarea>
+            </div>
+            {user && openAddComment && <div
+            className='add-comment-actions-container'>
+                    {user && <button
+                    className='cancel-comment-button'
+                    onClick={cancelOnClick}
+                    >CANCEL
+                    </button>}
+                    {user && <button
+                    id='add-comment-button-id'
+                    className='add-comment-button'
+                    onClick={addComment}
+                    >COMMENT
+                    </button>}
+                </div>}
         </div>}
         {comments && <div className='comments-container'>
             {comments && comments.map(comment => (
@@ -187,6 +250,7 @@ function Videos(){
             </div>
             ))}
         </div>}
+        <div className='bottom-margin-div'></div>
         </>
     )
 }

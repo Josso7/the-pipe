@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required
 from app.models import User, Video, Comment, db
 from datetime import datetime, date
+from sqlalchemy import desc
 
 video_routes = Blueprint('videos', __name__)
 
@@ -44,7 +45,7 @@ def post_comment(video_id):
 
 @video_routes.route('/<int:video_id>/video-comments', methods=['GET'])
 def get_comments(video_id):
-    comments = db.session.query(Comment).filter(video_id == Comment.video_id).order_by(Comment.id).all()
+    comments = db.session.query(Comment).filter(video_id == Comment.video_id).order_by(Comment.id.desc()).all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
 @video_routes.route('/video-comments', methods=['GET'])
