@@ -139,14 +139,14 @@ function Videos(){
 
     if(addCommentTextArea){
         addCommentTextArea.oninput = function() {
-            // addCommentTextArea.style.height = ""; /* Reset the height*/
+            addCommentTextArea.style.height = ""; /* Reset the height*/
             addCommentTextArea.style.height = Math.min(addCommentTextArea.scrollHeight, heightLimit) + "px";
         };
     }
 
     if(editCommentTextArea){
         editCommentTextArea.oninput = function() {
-            // editCommentTextArea.style.height = ""; /* Reset the height*/
+            editCommentTextArea.style.height = ""; /* Reset the height*/
             editCommentTextArea.style.height = Math.min(editCommentTextArea.scrollHeight, heightLimit) + "px";
         };
     }
