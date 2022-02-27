@@ -22,26 +22,25 @@ function Videos(){
     const [addVideoComment, setAddVideoComment] = useState('');
     const [errors, setErrors] = useState('');
 
+
     let textarea;
     let heightLimit;
     let textareaAddComment;
-    if(user) textareaAddComment = document.getElementById('textarea-add-comment-input');
+    let rootDiv = document.getElementById('root');
+
+    if(textareaAddComment) {
+        textareaAddComment = document.getElementById('textarea-add-comment-input');
+        console.log(textareaAddComment);
+        textareaAddComment.addEventListener('click', (e) => setTextareaCommentActive(e))
+    }
+    
+    if(user) document.getElementById('add-comment-button-id');
 
     useEffect(() => {
         dispatch(getVideos());
         dispatch(getComments(id));
         dispatch(getUsers());
     }, [])
-
-    useEffect(() => {
-        let commentButton = document.getElementById('add-comment-button-id');
-        if(errors){
-            commentButton.classList.add('inactive');
-        } else {
-            commentButton.classList.remove('inactive');
-        }
-
-    },[errors])
 
     if (videos && !videoSrc) {
         videoSrc = videos.find(video => video.id == id)
@@ -53,11 +52,11 @@ function Videos(){
     }
 
     const setTextareaCommentActive = (e) => {
-        e.target.classList.add('active');
+        e.classList.add('active');
     }
 
     const setTextareaCommentInactive = (e) => {
-
+        textareaAddComment.classList.remove('active');
     }
 
     const convertDatetoDateWithoutTime = (video) => {
@@ -125,7 +124,7 @@ function Videos(){
         <Navbar/>
         <div className='video-container'>
             {videoSrc && <video
-            autoplay
+            autoPlay
             controls
             src={videoSrc.video_url}>
             </video>}
