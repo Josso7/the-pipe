@@ -42,7 +42,7 @@ function HomePage(){
                 return (
                 <>
                 <div key={video.id} className='single-video-container'>
-                    <NavLink classname='a-link' to={`/videos/${video.id}`}>
+                    <NavLink className='a-link' to={`/videos/${video.id}`}>
                     <video className='video'
                     src={video.video_url}
                     ></video>

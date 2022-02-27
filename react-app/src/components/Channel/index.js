@@ -14,8 +14,6 @@ function Channel() {
     dispatch(getVideos());
 }, [])
 
-  console.log(videos);
-  console.log(user);
   const convertDatetoDateWithoutTime = (video) => {
     if (video.created_at_date) {
       if (video.created_at_date.length > 15) {
@@ -69,7 +67,7 @@ function Channel() {
             .filter((element) => element.user_id == user.id)
             .map((video) => (
               <div key={video.id} className="single-video-container">
-                <NavLink classname="a-link" to={`/videos/${video.id}`}>
+                <NavLink className="a-link" to={`/videos/${video.id}`}>
                   <video className="video" src={video.video_url}></video>
                 </NavLink>
                 <div className="video-details">
