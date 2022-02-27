@@ -11,7 +11,7 @@ const MODAL_STYLES = {
   zIndex: 1000,
   border: '1px solid rgba(0,0,0,0.1)',
   borderRadius: '1%',
-  width: '925px',
+  width: '960px',
   height: '805px'
 }
 
@@ -43,14 +43,33 @@ const BUTTON_STYLES = {
   fontWeight: 500
 }
 
+
 export default function Modal({ open, children, onClose }) {
   if (!open) return null
+  // document.body.style.cursor = "pointer";
+
+  // let closeButton = document.getElementById('close-button-modal')
+
+  const hoverEffect = () => {
+    document.body.style.cursor = 'pointer';
+  }
+
+  const clearHover = (e) => {
+    if (e.target.id !== 'close-button-modal') document.body.style.cursor ='default'
+  }
+
+  const setPointerDefault = () => document.body.style.cursor = 'default'
+
+  const onClickFunction = () => {
+    onClose()
+    setPointerDefault()
+  }
 
   return ReactDom.createPortal(
     <>
       <div style={OVERLAY_STYLES} />
-      <div style={MODAL_STYLES}>
-        <button style={BUTTON_STYLES} onClick={onClose}>CLOSE</button>
+      <div onMouseOver={(e) => clearHover(e)} style={MODAL_STYLES}>
+        <button onMouseOver={hoverEffect} id='close-button-modal'  style={BUTTON_STYLES} onClick={onClickFunction}>CLOSE</button>
         {children}
       </div>
     </>,

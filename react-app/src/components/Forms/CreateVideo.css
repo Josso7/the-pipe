@@ -1,5 +1,5 @@
 .form-container {
-    width: 927px;
+    width: 960px;
     height: 807px;
 }
 
@@ -38,6 +38,7 @@
     width: 95%;
     font-family: 'Roboto', 'sans-serif';
     font-size: 12px;
+    color: #606060;
     margin-left: 10px;
     margin-top: 10px;
 }
@@ -52,12 +53,23 @@
     word-wrap:break-word;
     word-break:break-all;
     margin-top: 10px;
+    color: black;
+}
+
+
+.upload-title-input:hover {
+    cursor: text;
+}
+
+.upload-description-input:hover {
+    cursor: text;
 }
 
 .upload-description-label {
     width: 95%;
     font-family: 'Roboto', 'sans-serif';
     font-size: 12px;
+    color: #606060;
     margin-left: 10px;
     margin-top: 10px;
 }
@@ -95,6 +107,7 @@
     word-wrap:break-word;
     word-break:break-all;
     box-sizing: border-box;
+    color: black;
 }
 
 .upload-form-title-header-wrapper {
@@ -171,15 +184,37 @@
     justify-content: flex-start;
 }
 
-.close-button-wrapper {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 150px;
-    height: 37px;
-    /* pointer-events: none; */
+#upload-video-player {
+    width: 300px;
+    border-radius: 3px 3px 0 0;
+    /* margin-top: 0px; */
+    /* margin-left: 10px; */
 }
 
-.close-button-wrapper:hover{
-    cursor: pointer;
+.video-file-name {
+    width: 95%;
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 16px;
+    margin-top: 1px;
+    margin-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.selected-file-details {
+    margin-top: 25px;
+    width: 300px;
+    height: 230px;
+    background: #f9f9f9;
+    border: none;
+    border-radius: 5px;
+}
+
+.filename-text {
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 12px;
+    color: #606060;
+    margin-left: 10px;
+    margin-top: 10px;
 }

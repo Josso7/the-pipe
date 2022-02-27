@@ -20,15 +20,28 @@ function Videos(){
     const [userComment, setUserComment] = useState('');
     const [editComment, setEditComment] = useState(0);
     const [addVideoComment, setAddVideoComment] = useState('');
+    const [errors, setErrors] = useState('');
 
     let textarea;
     let heightLimit;
+    let textareaAddComment;
+    if(user) textareaAddComment = document.getElementById('textarea-add-comment-input');
 
     useEffect(() => {
         dispatch(getVideos());
         dispatch(getComments(id));
         dispatch(getUsers());
     }, [])
+
+    useEffect(() => {
+        let commentButton = document.getElementById('add-comment-button-id');
+        if(errors){
+            commentButton.classList.add('inactive');
+        } else {
+            commentButton.classList.remove('inactive');
+        }
+
+    },[errors])
 
     if (videos && !videoSrc) {
         videoSrc = videos.find(video => video.id == id)
@@ -37,6 +50,14 @@ function Videos(){
     if (users && testUser && !testUser) {
         testUser = users.find(element => element.id == videoSrc.user_id)
         console.log(testUser)
+    }
+
+    const setTextareaCommentActive = (e) => {
+        e.target.classList.add('active');
+    }
+
+    const setTextareaCommentInactive = (e) => {
+
     }
 
     const convertDatetoDateWithoutTime = (video) => {
@@ -58,9 +79,7 @@ function Videos(){
 
     const addComment = () => {
         dispatch(postComment(addVideoComment, videoSrc.id, user.id));
-        setTimeout(() => {
-            window.scrollTo(0,document.body.scrollHeight);
-        }, 250 )
+        setAddVideoComment('');
     }
 
     const handleEdit = () => {
@@ -82,8 +101,16 @@ function Videos(){
     }
 
     if(editComment !== 0){
-        textarea = document.getElementById("textarea");
+        textarea = document.getElementById("textarea-add-comment-input");
         heightLimit = 200; /* Maximum height: 200px */
+    }
+
+    if(textareaAddComment){
+        textareaAddComment.oninput = function() {
+            let heightLimit = 1000;
+            textareaAddComment.style.height = ""; /* Reset the height*/
+            textareaAddComment.style.height = Math.min(textareaAddComment.scrollHeight, heightLimit) + "px";
+        };
     }
 
     if(textarea){
@@ -124,18 +151,35 @@ function Videos(){
             </div>
         </div>
         {user && <div className='add-comment'>
-            <input
+            <div
+            className='user-icon'
+            id='user-icon-videos'>
+                <div className='user-icon-videos-text'>
+                    {user.username[0].toUpperCase()}
+                </div>
+            </div>
+            <textarea
+            id='textarea-add-comment-input'
             className='comment-input'
-            type='text'
             placeholder='Add a comment...'
             value={addVideoComment}
             onChange={(e) => setAddVideoComment(e.target.value)}>
-            </input>
-            <button
-            onClick={addComment}
-            >Comment
-            </button>
+            </textarea>
         </div>}
+        {user && <div
+        className='add-comment-actions-container'>
+                {user && <button
+                className='cancel-comment-button'
+                onClick={(e) => setAddVideoComment('')}
+                >CANCEL
+                </button>}
+                {user && <button
+                id='add-comment-button-id'
+                className='add-comment-button'
+                onClick={addComment}
+                >COMMENT
+                </button>}
+            </div>}
         {comments && <div className='comments-container'>
             {comments && comments.map(comment => (
             <div className='single-comment' key={comment.id}>

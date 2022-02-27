@@ -11,6 +11,7 @@ function CreateVideo({ setIsOpen }) {
   const [description, setDescription] = useState('');
   const [errors, setErrors] = useState([]);
   const [titleWordCount, setTitleWordCount] = useState(0);
+  const [selectedFile, setSelectedFile] = useState('');
   const user = useSelector(state => state?.session?.user)
   let uploadDescriptionContainer;
   let uploadTitleContainer;
@@ -50,6 +51,14 @@ function CreateVideo({ setIsOpen }) {
       textareaTitleInput.removeEventListener('click', {});
     }
   },[])
+
+  useEffect(() => {
+    if(videoFile){
+      let videoPlayer = document.getElementById('upload-video-player');
+      let url = URL.createObjectURL(videoFile);
+      videoPlayer.src = url;
+    }
+  }, [videoFile])
 
   let textarea = document.getElementById('textarea');
   let heightLimit = 200;
@@ -91,7 +100,6 @@ function CreateVideo({ setIsOpen }) {
   return (
 
     <form id='upload-form-div' className='form-container' onSubmit={e=> uploadFile(e)}>
-      <div className='close-button-wrapper'></div>
       {/* {errors && <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
@@ -143,13 +151,29 @@ function CreateVideo({ setIsOpen }) {
                 type='file'
                 onChange={e => setVideoFile(e.target.files[0])}
               ></input>
-              <button
-              className='upload-choose-file-input'
-              type='submit'
-              >
-              UPLOAD VIDEO
-              </button>
         </label>
+        {videoFile && <div
+          className='selected-file-details'>
+          {videoFile && <video
+            id='upload-video-player'
+            >
+          </video>}
+          {videoFile && <div
+          className='filename-text'>
+            Filename
+            </div>}
+          {videoFile && <div
+          className='video-file-name'>
+            {videoFile.name}
+          </div>
+          }
+        </div>}
+        {videoFile && <button
+          className='upload-choose-file-input'
+          type='submit'
+          >
+          UPLOAD VIDEO
+        </button>}
       </div>
       </div>
 
