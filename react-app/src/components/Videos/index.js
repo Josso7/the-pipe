@@ -39,6 +39,14 @@ function Videos(){
     }, [])
 
     useEffect(() => {
+        heightLimit = 200;
+        if (userComment) editCommentTextArea = document.getElementById('edit-comment-textarea-id');
+        console.log(editCommentTextArea)
+        if (editCommentTextArea) editCommentTextArea.style.height = Math.min(editCommentTextArea.scrollHeight, heightLimit) + "px";
+
+    }, [userComment])
+
+    useEffect(() => {
 
         if(user) {
             textareaAddComment = document.getElementById('textarea-add-comment-input');
@@ -67,12 +75,10 @@ function Videos(){
 
     const submitCommentOnEnter = (e) => {
         let addCommentButtonId = document.getElementById('add-comment-button-id');
-        // let textareaAddCommentInput = document.getElementById('textarea-add-comment-input');
         if(e.code === 'Enter'){
             e.preventDefault();
             if(addCommentButtonId) {
                 addCommentButtonId.click();
-                // textareaAddCommentInput.style.height = 21 + 'px';
             }
         }
     }
@@ -113,7 +119,6 @@ function Videos(){
 
     const handleEdit = () => {
         dispatch(editUserComment(userComment, videoSrc.id, user.id, editComment));
-        history.push(`/videos/${videoSrc.id}`)
     }
 
     const handleDelete = (commentId) => {
@@ -243,7 +248,6 @@ function Videos(){
                         <textarea
                         id='edit-comment-textarea-id'
                         className='edit-comment-textarea'
-                        autoFocus
                         onBlur={(e) => {
                             setEditComment(0);
                             handleEdit();
