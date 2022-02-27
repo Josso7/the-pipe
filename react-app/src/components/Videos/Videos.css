@@ -119,6 +119,7 @@ video {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    margin-top: 20px;
 }
 
 .comment-info {
@@ -146,6 +147,10 @@ video {
     align-items: center;
     margin-left: 90px;
     margin-top: 20px;
+}
+
+.add-comment-wrapper {
+    margin-bottom: 50px;
 }
 
 .user-comment-text {
@@ -280,4 +285,16 @@ video {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.bottom-margin-div {
+    margin-bottom: 200px;
+}
+
+.comments-counter {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #030303;
+    margin-left: 5%;
+    margin-top: 20px;
 }
