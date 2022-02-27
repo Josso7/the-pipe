@@ -298,3 +298,51 @@ video {
     margin-left: 5%;
     margin-top: 20px;
 }
+
+.edit-button {
+    margin-left: 10px;
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 3%;
+    width: 105px;
+    min-width: 105px;
+    height: 37px;
+    background-color: #065fd4;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 14px;
+    color: white;
+}
+
+.edit-button:hover {
+    cursor: pointer;
+}
+
+.delete-button {
+    margin-left: 10px;
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 3%;
+    width: 105px;
+    min-width: 105px;
+    height: 37px;
+    background-color: #065fd4;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 14px;
+    color: white;
+}
+
+.delete-button:hover {
+    cursor: pointer;
+}
+
+.edit-comment-textarea {
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #030303;
+    resize: none;
+}

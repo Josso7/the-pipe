@@ -28,21 +28,32 @@ function Videos(){
     let heightLimit;
     let textareaAddComment;
     let rootDiv;
+    let addCommentButtonId;
 
     useEffect(() => {
         dispatch(getVideos());
         dispatch(getComments(id));
         dispatch(getUsers());
-        textareaAddComment = document.getElementById('textarea-add-comment-input');
-        document.body.addEventListener('keydown',(e) => submitCommentOnEnter(e))
-        textareaAddComment.addEventListener('click', setTextareaCommentActive)
-        rootDiv = document.getElementById('root');
-        rootDiv.addEventListener('click', (e) => setTextareaCommentInactive(e) )
     }, [])
 
-    // useEffect(() => {
-    //     if(userComment) setOpenAddComment(true);
-    // },[userComment])
+    useEffect(() => {
+        dispatch(getVideos());
+        dispatch(getComments(id));
+        dispatch(getUsers());
+        if(user) textareaAddComment = document.getElementById('textarea-add-comment-input');
+        if(user) document.body.addEventListener('keyup', (e) => submitCommentOnEnter(e));
+        if(user) textareaAddComment.addEventListener('click', setTextareaCommentActive);
+        if(user) rootDiv = document.getElementById('root');
+        if(user) rootDiv.addEventListener('click', (e) => setTextareaCommentInactive(e));
+        if(user) addCommentButtonId = document.getElementById('add-comment-button-id');
+        if (addCommentButtonId) console.log(addCommentButtonId);
+
+        return () => {
+            document.body.removeEventListener('keyup', {});
+            rootDiv.removeEventListener('click', {});
+            textareaAddComment.removeEventListener('click', {});
+        }
+    }, [user, openAddComment])
 
     if (videos && !videoSrc) {
         videoSrc = videos.find(video => video.id == id)
@@ -64,9 +75,11 @@ function Videos(){
     }
 
     const submitCommentOnEnter = (e) => {
-        e.preventDefault();
         console.log(e.code);
-        if(e.code === 'Enter') addComment();
+        if(e.code === 'Enter'){
+            e.preventDefault();
+            if(addCommentButtonId) addCommentButtonId.click();
+        }
     }
 
     const convertDatetoDateWithoutTime = (video) => {
@@ -218,6 +231,7 @@ function Videos(){
                     <div>
                         {editComment === comment.id &&
                         <textarea
+                        className='edit-comment-textarea'
                         autoFocus
                         onBlur={(e) => {
                             setEditComment(0);
@@ -225,7 +239,6 @@ function Videos(){
                         }}
                         id='textarea'
                         cols='100'
-                        // defaultValue={comment.content}
                         value={userComment}
                         onChange={(e) => setUserComment(e.target.value)}>
                         </textarea>
