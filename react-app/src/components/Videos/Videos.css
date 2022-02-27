@@ -175,6 +175,11 @@ video {
 .comment {
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 90%;
+
 }
 
 .edit-comment-button-container {
@@ -371,3 +376,25 @@ video {
     border-right: none;
     border-bottom: 1px solid rgb(144,144,144);
 }    */
+
+.comments-container-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.view-more-text {
+    margin-left: 55px;
+    width: 100px;
+    color: #606060;
+    visibility: hidden;
+    height: 0;
+}
+
+.view-more-text:hover {
+    text-decoration: underline;
+}
+
+.view-more-text.active {
+    visibility: visible;
+    height: auto;
+}
