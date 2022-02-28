@@ -18,12 +18,12 @@ TheTube is a clone of YouTube. Users can go to the website and watch videos subm
 - Redux
 
 # Home Page 
-![DB Schema](https://github.com/Josso7/the-tube/blob/main/wiki-images/the-pipe-home-page.png)
+![DB Schema](https://github.com/Josso7/the-pipe/blob/main/wiki-images/the-pipe-home-page.png)
 # Video Page 
-![DB Schema](https://github.com/Josso7/the-tube/blob/main/wiki-images/the-pipe-video-page.png)
+![DB Schema](https://github.com/Josso7/the-pipe/blob/main/wiki-images/the-pipe-video-page.png)
 # Video Comments 
-![DB Schema](https://github.com/Josso7/the-tube/blob/main/wiki-images/the-pipe-video-comments.png)
+![DB Schema](https://github.com/Josso7/the-pipe/blob/main/wiki-images/the-pipe-video-comments.png)
 # User Channel 
-![DB Schema](https://github.com/Josso7/the-tube/blob/main/wiki-images/the-pipe-user-channel-page.png)
+![DB Schema](https://github.com/Josso7/the-pipe/blob/main/wiki-images/the-pipe-user-channel-page.png)
 # Manage Videos 
-![DB Schema](https://github.com/Josso7/the-tube/blob/main/wiki-images/the-pipe-manage-videos-page.png)
+![DB Schema](https://github.com/Josso7/the-pipe/blob/main/wiki-images/the-pipe-manage-videos-page.png)
