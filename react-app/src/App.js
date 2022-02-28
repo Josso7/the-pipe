@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
 import { authenticate } from './store/session';
 import Channel from './components/Channel';
 import ManageVideos from './components/ManageVideos'
@@ -36,9 +35,6 @@ function App() {
         <Route exact path='/sign-up'>
           <SignUpForm />
         </Route>
-        <ProtectedRoute exact path='/users'>
-          <UsersList/>
-        </ProtectedRoute>
         <ProtectedRoute exact path='/user/channel'>
           <Channel />
         </ProtectedRoute>
