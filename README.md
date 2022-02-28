@@ -1,6 +1,6 @@
-# TheTube
+# ThePipe
 
-TheTube is a clone of YouTube. Users can go to the website and watch videos submitted by other users. Users can like and comment on videos as well as subscribe to other Tubers to keep notified of any new videos they post. If a user wants to make an account, this gives them the option to become a content creator and post their own videos, as well as comment on videos.
+ThePipe is a clone of YouTube. Users can go to the website and watch videos submitted by other users. Users can like and comment on videos as well as subscribe to other Tubers to keep notified of any new videos they post. If a user wants to make an account, this gives them the option to become a content creator and post their own videos, as well as comment on videos.
 
 ## Features
 
@@ -40,9 +40,8 @@ TheTube is a clone of YouTube. Users can go to the website and watch videos subm
    `npm install`
  2. Start the front end server from react-app directory
    `npm start`
- ThePipe should automatically open in a new tab using your default browser. If not, navigate to localhost:3000
- 
-Migrate and seed your database from within Python's virtual environment
+ ThePipe should automatically open in a new tab using your default browser. If not, navigate to localhost:3000 
+
 # Home Page 
 ![DB Schema](https://github.com/Josso7/the-pipe/blob/main/wiki-images/the-pipe-home-page.png)
 # Video Page 
