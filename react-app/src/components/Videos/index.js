@@ -1,14 +1,13 @@
 import './Videos.css';
 import Navbar from '../Navbar';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getVideos } from '../../store/video';
+import { getVideos, updateViews } from '../../store/video';
 import { getComments, postComment, editUserComment, deleteUserComment } from '../../store/comment';
 import { getUsers } from '../../store/users';
 
 function Videos(){
-    const history = useHistory();
     const dispatch = useDispatch();
     const { id } = useParams();
     let videoSrc;
@@ -29,15 +28,14 @@ function Videos(){
     let textareaAddComment;
     let rootDiv;
     let editCommentTextArea;
-    const allComments= [];
 
     useEffect(() => {
         dispatch(getVideos());
         dispatch(getComments(id));
         dispatch(getUsers());
+        dispatch(updateViews(id));
         document.body.addEventListener('keydown', (e) => submitCommentOnEnter(e));
-
-    }, [])
+    }, [dispatch, id])
 
     useEffect(() => {
         heightLimit = 200;
@@ -115,11 +113,11 @@ function Videos(){
     // }, [editComment])
 
     if (videos && !videoSrc) {
-        videoSrc = videos.find(video => video.id == id)
+        videoSrc = videos.find(video => video.id === parseInt(id))
     }
 
     if (users && testUser && !testUser) {
-        testUser = users.find(element => element.id == videoSrc.user_id)
+        testUser = users.find(element => element.id === videoSrc.user_id)
     }
 
 
@@ -200,7 +198,7 @@ function Videos(){
 
     const handleEditCommentButtonClick = (e) => {
         console.log(e.target.id);
-        if (editCommentErrors.length === 0 && editComment !== 0 && e.target.id == `edit-button-${editComment}`) {
+        if (editCommentErrors.length === 0 && editComment !== 0 && e.target.id === `edit-button-${editComment}`) {
             console.log('test');
             handleEdit();
             setEditComment(1);
@@ -230,9 +228,6 @@ function Videos(){
         };
     }
 
-    function isEllipsisActive(e) {
-        return (e.offsetWidth < e.scrollWidth);
-   }
     let saveButton = document.getElementById(`edit-button-${editComment}`);
     if (saveButton) {
         if (editCommentErrors.length > 0) {
@@ -263,16 +258,19 @@ function Videos(){
         </div>
         <div className='video-user-info-container'>
             <div className='user-icon'>
-                {users && videoSrc && <div className='user-icon-text'>{users?.find(element => element.id == videoSrc.user_id).username[0].toUpperCase()}</div>}
+                {users && videoSrc && <div className='user-icon-text'>{users?.find(element => element.id === videoSrc.user_id).username[0].toUpperCase()}</div>}
             </div>
             <div className='user-info'>
-                {users && videoSrc && <p className='username'>{users?.find(element => element.id == videoSrc.user_id).username}</p>}
+                {users && videoSrc && <p className='username'>{users?.find(element => element.id === videoSrc.user_id).username}</p>}
                 {/* {users && videoSrc && <p className='subscriber-count'>{users?.find(element => element.id === videoSrc.user_id).subscriber_count} subscribers</p>} */}
             </div>
-            <div className='subscribe-button'>
+            {/* <div className='subscribe-button'>
                 <div className='subscribe-text'>SUBSCRIBE</div>
-            </div>
+            </div> */}
         </div>
+        {videoSrc && <div className='video-description'>
+            {videoSrc.description}
+        </div>}
         {videoSrc && <div
             className='comments-counter'>
                 {comments && comments.length} {comments && comments.length === 1 ? 'Comment' : 'Comments'}
@@ -328,7 +326,7 @@ function Videos(){
                 </div>
                 <div className='comment-info'>
                     <div className='user-name-date'>
-                        {users && <div className='user-name'>{users?.find(element => element?.id == comment?.user_id).username}
+                        {users && <div className='user-name'>{users?.find(element => element?.id === comment?.user_id).username}
                             {<span className='date'>{convertDatetoDateWithoutTime(comment)?.created_at_date}</span>}
                         </div>}
 

@@ -1,0 +1,81 @@
+.login-form-container {
+    position: relative;
+    top: 200px;
+    left: 700px;
+    width: 450px;
+    height: 500px;
+    color: rgb(32, 33, 36);
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+}
+
+input {
+    all: unset;
+}
+.email-input {
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    color: #202124;
+    font-size: 16px;
+    height: 28px;
+    margin: 1px 1px 0 1px;
+    padding: 13px 15px;
+    outline: none;
+    width: 75%;
+}
+
+.email-input-container {
+    margin-top: 50px;
+    margin-left: 55px;
+}
+
+.password-input {
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    color: #202124;
+    font-size: 16px;
+    height: 28px;
+    margin: 1px 1px 0 1px;
+    padding: 13px 15px;
+    outline: none;
+    width: 75%;
+}
+
+.password-input-container {
+    margin-top: 50px;
+    margin-left: 55px;
+}
+
+.submit-button {
+    width: 80px;
+    height: 40px;
+    background: #1a73e8;
+    border-radius: 4px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin-left: 185px;
+    margin-top: 40px;
+}
+
+.sign-in-text-container {
+    margin-top: 50px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+}
+
+.to-continue-text-container {
+    margin-top: 25px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.login-error-message-container {
+    margin-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    color: red;
+    text-align: center;
+}

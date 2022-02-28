@@ -15,7 +15,7 @@ function HomePage(){
     useEffect(() => {
         dispatch(getVideos());
         dispatch(getUsers());
-    }, [])
+    }, [dispatch])
 
     const convertDatetoDateWithoutTime = (video) => {
         if (video.created_at_date){
@@ -40,42 +40,40 @@ function HomePage(){
         <div className='videos-container'>
             {videos && videos.map(video => {
                 return (
-                <>
                 <div key={video.id} className='single-video-container'>
-                    <NavLink className='a-link' to={`/videos/${video.id}`}>
-                    <video className='video'
+                    <NavLink key={video}className='a-link' to={`/videos/${video.id}`}> {}
+                    <video key={video.id}className='video'
                     src={video.video_url}
                     ></video>
                     </NavLink>
-                    <div className='video-details'>
-                        <div className='user-icon'
+                    <div key={video.id} className='video-details'>
+                        <div key={video.id} className='user-icon'
                         id='user-icon-homepage'>
-                            <div className='user-icon-text'>
-                                {users && users.find(element => element.id == video.user_id).username[0].toUpperCase()}
+                            <div key={video.id} className='user-icon-text'>
+                                {users && users.find(element => element.id === video.user_id).username[0].toUpperCase()}
                             </div>
                         </div>
-                        <div className='video-details-text'>
-                        <div className='title'>
+                        <div key={video}className='video-details-text'> {}
+                        <div key={video.id}className='title'>
                             {video.title}
                         </div>
-                        <div className='video-username'>
-                            {users && users.find(element => element.id == video.user_id).username}
+                        <div key={video}className='video-username'> {}
+                            {users && users.find(element => element.id === video.user_id).username}
                         </div>
-                        <div className='views-created-at-date-container'>
-                            <div className='video-views'>
+                        <div className='views-created-at-date-container'> {}
+                            <div key={video.id}className='video-views'>
                                 {videos && video.views} views
                             </div>
-                            <div className='bullet-point'>
+                            <div key={video.image_url}className='bullet-point'> {}
                                 •
                             </div>
-                            <div className='video-created-at-date'>
+                            <div key={video}className='video-created-at-date'>
                                 {videos && convertDatetoDateWithoutTime(video).created_at_date}
                             </div>
                         </div>
                         </div>
                     </div>
                 </div>
-                </>
                 )
             }
             )}

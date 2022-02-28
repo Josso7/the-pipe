@@ -3,18 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react'
 import YouTubeHomeLogo from '../../images/yt_logo.png'
 import '../Navbar/Navbar.css'
-import HamburgerMenuIcon from '../../images/yt-hamburger-menu-icon.png'
-import SearchbarIcon from '../../images/yt-search-icon.png'
 import { logout } from '../../store/session'
 
 function Navbar(){
     const user = useSelector(state=> state?.session?.user)
     const dispatch = useDispatch()
     const [userMenu, setUserMenu] = useState(false);
-
-    // const handleSearch = async () => {
-
-    // }
 
     useEffect(() => {
         if (!user) setUserMenu(false);
@@ -49,10 +43,10 @@ function Navbar(){
                     <img src={HamburgerMenuIcon}></img>
                 </button> */}
                 <Link to='/'>
-                    <img title='ThePipe Home' id='image-yt-logo' src={YouTubeHomeLogo}></img>
+                    <img alt='ThePipe logo' title='ThePipe Home' id='image-yt-logo' src={YouTubeHomeLogo}></img>
                 </Link>
             </div>
-            <div className='search-container'>
+            {/* <div className='search-container'>
                     <input
                     className='search-bar'
                     type='text'
@@ -67,7 +61,7 @@ function Navbar(){
                         src={SearchbarIcon}>
                         </img>
                     </button>
-            </div>
+            </div> */}
             {!user && <NavLink className='login-button-wrapper' to='/login'><button className='sign-in-button'>SIGN IN</button></NavLink>}
             {user && <button
             title='Open User Menu'
@@ -75,14 +69,14 @@ function Navbar(){
             id='user-menu-button'
             onClick={handleClick}>
                 {user && <div className='user-menu-icon'>
-                        {user && <p className='user-menu-text'>{user.username[0]}</p>}
+                        {user && <p className='user-menu-text'>{user.username[0].toUpperCase()}</p>}
                     </div>}
             </button>}
             {userMenu &&
             <div className='user-menu-popup'>
                 <div className='user-info-container'>
                     <div className='user-icon-popup'>
-                        <div className='user-icon-popup-text'>{user.username[0]}</div>
+                        <div className='user-icon-popup-text'>{user.username[0].toUpperCase()}</div>
                     </div>
                     <div className='username-popup-text'>{user.username}</div>
                 </div>
