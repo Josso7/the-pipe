@@ -45,7 +45,7 @@ function Channel() {
                     {user && user.username}
                 </div>
                 <div className='channel-user-subscribers'>
-                    {user && user.subscriber_count} subscribers
+                    {/* {user && user.subscriber_count} subscribers */}
                 </div>
             </div>
             <NavLink
