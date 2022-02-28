@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css';
+import Demo from '../auth/Demo';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -28,7 +29,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/home' />;
   }
 
   return (
@@ -69,6 +70,7 @@ const LoginForm = () => {
         />
       </div>
       <button className='submit-button' type='submit'>LOGIN</button>
+      <Demo />
     </form>
   );
 };

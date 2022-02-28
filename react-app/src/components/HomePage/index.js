@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getVideos } from '../../store/video';
 import './HomePage.css'
-import Navbar
- from '../Navbar';
+import Navbar from '../Navbar';
 import { getUsers } from '../../store/users';
 function HomePage(){
     const dispatch = useDispatch();

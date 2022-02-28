@@ -36,9 +36,9 @@ body {
     border-radius: 50%;
 }
 
-#user-menu-button {
+/* #user-menu-button {
     padding: 1px 6px;
-}
+} */
 
 #user-menu-button:hover {
     cursor: pointer;
@@ -50,9 +50,9 @@ body {
 
 .navbar-menu-button {
     margin-top: 2px;
-    width: 150px;
+    width: 32px;
     margin-right: 2%;
-    margin-left: 18%;
+    margin-left: 1%;
     display: flex;
     justify-content: flex-end;
 }
@@ -121,8 +121,8 @@ button {
 
 .user-menu-popup {
     position: absolute;
-    top: 44px;
-    right: 63px;
+    top: 55px;
+    right: 40px;
     width: 300px;
     height: 500px;
     border: 1px solid black;
@@ -231,6 +231,54 @@ a:visited{
 }
 
 .login-button-wrapper {
-    margin-left: 17.75%;
-    margin-right: 2%;
+    margin-left: 1%;
+}
+
+.signup-button {
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 3%;
+    width: 150px;
+    min-width: 150px;
+    height: 37px;
+    background-color: #065fd4;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+    color: white;
+}
+
+.signup-button-wrapper {
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+.github-button {
+    margin-left: 57%;
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 3%;
+    width: 150px;
+    min-width: 150px;
+    height: 37px;
+    background-color: #065fd4;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+    color: white;
+}
+
+.linkedin-button {
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 3%;
+    width: 150px;
+    min-width: 150px;
+    height: 37px;
+    background-color: #065fd4;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+    color: white;
+    margin-left: 1%;
 }

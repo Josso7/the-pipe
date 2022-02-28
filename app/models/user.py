@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
-    subscriber_count = db.Column(db.Integer)
+    # subscriber_count = db.Column(db.Integer)
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # comment = db.relationship(
@@ -33,5 +33,4 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'subscriber_count': self.subscriber_count
         }
