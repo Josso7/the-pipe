@@ -21,7 +21,8 @@ function Videos(){
     const [editComment, setEditComment] = useState(0);
     const [addVideoComment, setAddVideoComment] = useState('');
     const [openAddComment, setOpenAddComment] = useState(false);
-    const [errors, setErrors] = useState('');
+    const [addCommentErrors, setAddCommentErrors] = useState([]);
+    const [editCommentErrors, setEditCommentErrors] = useState([]);
 
     let addCommentTextArea;
     let heightLimit;
@@ -34,23 +35,52 @@ function Videos(){
         dispatch(getVideos());
         dispatch(getComments(id));
         dispatch(getUsers());
-        document.body.addEventListener('keyup', (e) => submitCommentOnEnter(e));
+        document.body.addEventListener('keydown', (e) => submitCommentOnEnter(e));
 
     }, [])
 
     useEffect(() => {
         heightLimit = 200;
         if (userComment) editCommentTextArea = document.getElementById('edit-comment-textarea-id');
-        console.log(editCommentTextArea)
         if (editCommentTextArea) editCommentTextArea.style.height = Math.min(editCommentTextArea.scrollHeight, heightLimit) + "px";
 
+        // let saveButton = document.getElementById(`edit-button-${editComment}`);
+        // if(saveButton){
+        //     if(editCommentErrors.length > 0) {
+        //         console.log(editCommentErrors);
+        //         saveButton.classList.add('inactive')
+        //     } else {
+        //         saveButton.classList.remove('inactive')
+        //     }
+        // }
+
     }, [userComment])
+
+    useEffect(() => {
+        const errors = [];
+
+        if(addVideoComment.length <= 0) errors.push('Please enter at least one character')
+        if(addVideoComment.length > 10000) errors.push('Comment too long, maximum length is 10,000 characters')
+
+        setAddCommentErrors(errors);
+    }, [addVideoComment])
+
+    useEffect(() => {
+        if(editComment !== 0){
+            const errors = [];
+
+            if(userComment.length <= 0) errors.push('Please enter at least one character')
+            if(userComment.length > 10000) errors.push('Comment too long, maximum length is 10,000 characters')
+
+            setEditCommentErrors(errors);
+            console.log(editCommentErrors);
+        }
+    },[userComment])
 
     useEffect(() => {
 
         if(user) {
             textareaAddComment = document.getElementById('textarea-add-comment-input');
-            console.log(textareaAddComment);
         };
         if(user) textareaAddComment.addEventListener('click', setTextareaCommentActive);
         if(user) rootDiv = document.getElementById('root');
@@ -58,11 +88,31 @@ function Videos(){
         if(comments) document.getElementsByClassName('comment');
 
         return () => {
-            document.body.removeEventListener('keyup', {});
-            rootDiv.removeEventListener('click', {});
-            textareaAddComment.removeEventListener('click', {});
+            if(user) document.body.removeEventListener('keydown', {});
+            if(user) rootDiv.removeEventListener('click', {});
+            if(user) textareaAddComment.removeEventListener('click', {});
         }
     }, [user, openAddComment, comments])
+
+    useEffect(() => {
+        let saveCommentButtonClasses = document.getElementsByClassName('save');
+        if (saveCommentButtonClasses) {
+            while (saveCommentButtonClasses.length){
+                saveCommentButtonClasses[0].className = saveCommentButtonClasses[0].className.replace('save', '');
+            }
+        }
+        let editCommentButton = document.getElementById(`edit-button-${editComment}`)
+        if(editCommentButton) editCommentButton.classList.add('save');
+    },[editComment]);
+
+    // useEffect(() => {
+    //     editCommentTextArea = document.getElementById('edit-comment-textarea-id');
+    //     console.log(editCommentTextArea);
+    //     // if(editCommentTextArea) editCommentTextArea.addEventListener('click', setTextareaEditCommentActive);
+    //     return () => {
+    //         // editCommentTextArea.removeEventListener('click', {});
+    //     }
+    // }, [editComment])
 
     if (videos && !videoSrc) {
         videoSrc = videos.find(video => video.id == id)
@@ -87,6 +137,19 @@ function Videos(){
        textareaAddComment.classList.add('active');
        setOpenAddComment(true);
     }
+
+    // const setTextareaEditCommentActive = () => {
+    //     // editCommentTextArea = document.getElementById('edit-comment-textarea-id');
+    //     editCommentTextArea.classList.add('active');
+    //     console.log(editCommentTextArea.classList)
+
+    // }
+
+    // const setTextareaEditCommentInactive = (e) => {
+    //     if(e.target.className !== 'comment-input active')
+    //     editCommentTextArea.classList.remove('active');
+
+    // }
 
     const setTextareaCommentInactive = (e) => {
         if(e.target.className !== 'comment-input active')
@@ -129,9 +192,20 @@ function Videos(){
         setEditComment(commentId);
     }
 
+
     const cancelOnClick = () => {
         setOpenAddComment(false);
         setAddVideoComment('');
+    }
+
+    const handleEditCommentButtonClick = (e) => {
+        console.log(e.target.id);
+        if (editCommentErrors.length === 0 && editComment !== 0 && e.target.id == `edit-button-${editComment}`) {
+            console.log('test');
+            handleEdit();
+            setEditComment(1);
+            dispatch(getComments(id));
+        }
     }
 
     if(videoSrc) {
@@ -159,6 +233,15 @@ function Videos(){
     function isEllipsisActive(e) {
         return (e.offsetWidth < e.scrollWidth);
    }
+    let saveButton = document.getElementById(`edit-button-${editComment}`);
+    if (saveButton) {
+        if (editCommentErrors.length > 0) {
+            console.log(editCommentErrors);
+            saveButton.classList.add("inactive");
+        } else {
+            saveButton.classList.remove("inactive");
+        }
+    }
 
     return (
         <>
@@ -184,7 +267,7 @@ function Videos(){
             </div>
             <div className='user-info'>
                 {users && videoSrc && <p className='username'>{users?.find(element => element.id == videoSrc.user_id).username}</p>}
-                {users && videoSrc && <p className='subscriber-count'>{users?.find(element => element.id === videoSrc.user_id).subscriber_count} subscribers</p>}
+                {/* {users && videoSrc && <p className='subscriber-count'>{users?.find(element => element.id === videoSrc.user_id).subscriber_count} subscribers</p>} */}
             </div>
             <div className='subscribe-button'>
                 <div className='subscribe-text'>SUBSCRIBE</div>
@@ -218,17 +301,24 @@ function Videos(){
                     onClick={cancelOnClick}
                     >CANCEL
                     </button>}
-                    {user && <button
+                    {user && addCommentErrors.length === 0 && <button
                     id='add-comment-button-id'
                     className='add-comment-button'
                     onClick={addComment}
+                    >COMMENT
+                    </button>}
+                    {user && addCommentErrors.length > 0 && <button
+                    id='add-comment-button-id-disabled'
+                    className='add-comment-button-disabled'
                     >COMMENT
                     </button>}
                 </div>}
         </div>}
         {comments && <div className='comments-container'>
             {comments && comments.map(comment => (
-            <div className='comments-container-wrapper'>
+            <div
+            key={comment.id}
+            className='comments-container-wrapper'>
             <div className='single-comment' key={comment.id}>
                 <div className='user-icon'
                 id='comment'
@@ -248,11 +338,8 @@ function Videos(){
                         <textarea
                         id='edit-comment-textarea-id'
                         className='edit-comment-textarea'
-                        onBlur={(e) => {
-                            setEditComment(0);
-                            handleEdit();
-                        }}
                         placeholder='Add a comment...'
+                        autoFocus
                         value={userComment}
                         onChange={(e) => setUserComment(e.target.value)}>
                         </textarea>
@@ -262,17 +349,33 @@ function Videos(){
                         {comment.content}
                     </div>}
                 </div>
-                {user && comment.user_id === user.id && <div className='edit-comment-button-container'>
-                    <button className='edit-button' key={comment.id}
-                    onClick={() => {
+                {user && comment.user_id === user.id && <div
+                id={`edit-comment-button-${comment.id}`}
+                className='edit-comment-button-container'>
+                    {<button className='edit-button'
+                    id={`edit-button-${comment.id}`}
+                    onClick={(e) => {
                         editCommentInput(comment.id)
+                        handleEditCommentButtonClick(e)
                         setUserComment(comment.content)
                     }}
-                    >Edit</button>
+                    ></button>}
+                {/* {editCommentErrors.length > 0 && editComment !== 0 && <button
+                className='edit-button-inactive'
+                    ></button>} */}
+                {/* {editCommentErrors.length == 0  && editComment !== 0 && <button
+                key={comment.id}
+                id={comment.id}
+                onClick={() => {
+                    setEditComment(0);
+                    handleEdit();
+                }}
+                className='edit-button'
+                    >SAVE</button>} */}
                 </div>}
                 {user && comment.user_id === user.id && <div className='delete-comment-button-container'>
                     <button className='delete-button'
-                    onClick={() => handleDelete(comment.id)}>Delete</button>
+                    onClick={() => handleDelete(comment.id)}>DELETE</button>
                 </div>}
             </div>
                 <button
