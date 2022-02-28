@@ -18,7 +18,7 @@ def post_video():
         description = url['description'],
         created_at_date = date.today(),
         created_at_time = datetime.utcnow(),
-        views = 12
+        views = 0
     )
     db.session.add(video)
     db.session.commit()

@@ -1,0 +1,61 @@
+.the-pipe-header-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 100px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.splash-container {
+    width: 1000px;
+    height: 800px;
+    border: 2px solid #065fd4;
+    border-radius: 10px;
+    position: relative;
+    top: 100px;
+    left: 450px;
+}
+
+.slogan-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 50px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.sign-in-button-splash {
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 20px;
+    width: 450px;
+    min-width: 150px;
+    height: 90px;
+    background-color: #065fd4;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+    color: white;
+    font-size: 35px;
+}
+
+.signup-button-splash {
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 20px;
+    width: 450px;
+    min-width: 150px;
+    height: 90px;
+    background-color: #065fd4;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+    color: white;
+    font-size: 35px;
+}
+
+.sign-in-button-splash-wrapper {
+    margin-top: 50px;
+}
+
+.signup-button-splash-wrapper {
+    margin-top: 50px;
+}

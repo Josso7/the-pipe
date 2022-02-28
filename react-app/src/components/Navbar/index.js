@@ -42,7 +42,7 @@ function Navbar(){
                 {/* <button className='navbar-menu-button'>
                     <img src={HamburgerMenuIcon}></img>
                 </button> */}
-                <Link to='/'>
+                <Link to='/home'>
                     <img alt='ThePipe logo' title='ThePipe Home' id='image-yt-logo' src={YouTubeHomeLogo}></img>
                 </Link>
             </div>
@@ -62,7 +62,10 @@ function Navbar(){
                         </img>
                     </button>
             </div> */}
+            <a className='github-button' href='https://github.com/Josso7/the-pipe'>GITHUB</a>
+            <a className='linkedin-button' href='https://www.linkedin.com/in/jesse-brooks-8a6718229/'>LINKEDIN</a>
             {!user && <NavLink className='login-button-wrapper' to='/login'><button className='sign-in-button'>SIGN IN</button></NavLink>}
+            {!user && <NavLink className='signup-button-wrapper' to='/sign-up'><button className='signup-button'>SIGNUP</button></NavLink>}
             {user && <button
             title='Open User Menu'
             className='navbar-menu-button'

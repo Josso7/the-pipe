@@ -10,6 +10,7 @@ import Channel from './components/Channel';
 import ManageVideos from './components/ManageVideos'
 import HomePage from './components/HomePage'
 import Videos from './components/Videos';
+import SplashPage from './components/SplashPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,8 +48,11 @@ function App() {
         <Route exact path='/videos/:id'>
           <Videos />
         </Route>
-        <Route exact path='/' >
+        <Route exact path='/home' >
           <HomePage />
+        </Route>
+        <Route exact path='/' >
+          <SplashPage />
         </Route>
       </Switch>
     </BrowserRouter>
