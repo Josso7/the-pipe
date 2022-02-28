@@ -1,4 +1,3 @@
-const UPLOAD_VIDEO = 'video/UPLOAD_VIDEO';
 const GET_VIDEOS = '/video/GET_VIDEOS';
 
 const load = (videos) => ({
@@ -6,7 +5,44 @@ const load = (videos) => ({
     videos
 });
 
-export const postVideo = (videoUrl, title, description, userId) => async () => {
+export const updateViews = (videoId) => async dispatch => {
+    const response = await fetch(`/api/videos/${videoId}/views`, {
+        method: 'PUT'
+    });
+
+    if(response.ok){
+        dispatch(getVideos());
+        return 'view added';
+    }
+}
+
+export const deleteVideo = (videoId) => async dispatch => {
+    await fetch(`/api/videos/${videoId}`, {
+        method: 'DELETE'
+    });
+    dispatch(getVideos());
+}
+
+export const editVideo = (videoId, title, description) => async dispatch => {
+    console.log(videoId);
+    const response = await fetch(`/api/videos/${videoId}`, {
+        method: 'PUT',
+        headers : {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            title,
+            description
+        })
+    })
+
+    if(response.ok){
+        dispatch(getVideos());
+        return 'Video updated'
+    }
+}
+
+export const postVideo = (videoUrl, title, description, userId) => async dispatch => {
     const response = await fetch('/api/videos/', {
         method: 'POST',
         headers: {
@@ -21,6 +57,7 @@ export const postVideo = (videoUrl, title, description, userId) => async () => {
     });
 
     if(response.ok) {
+        dispatch(getVideos());
         return 'video_url saved to database';
     }
 }
@@ -38,7 +75,6 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    let newState;
 
     switch(action.type){
       case GET_VIDEOS: {

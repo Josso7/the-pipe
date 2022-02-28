@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getVideos } from '../../store/video';
-import { getUsers } from '../../store/users';
 import Navbar from "../Navbar";
 import "./Channel.css";
 function Channel() {
@@ -12,7 +11,7 @@ function Channel() {
 
   useEffect(() => {
     dispatch(getVideos());
-}, [])
+}, [dispatch])
 
   const convertDatetoDateWithoutTime = (video) => {
     if (video.created_at_date) {
@@ -64,7 +63,7 @@ function Channel() {
         </div>
         {videos &&
           videos
-            .filter((element) => element.user_id == user.id)
+            .filter((element) => element.user_id === user.id)
             .map((video) => (
               <div key={video.id} className="single-video-container">
                 <NavLink className="a-link" to={`/videos/${video.id}`}>

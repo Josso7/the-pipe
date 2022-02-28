@@ -4,8 +4,8 @@
 }
 
 .upload-form-container {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
 
 }
 
@@ -21,7 +21,7 @@
 }
 
 .upload-title-container {
-    margin-top: 25px;
+    margin-top: 10px;
     width: 600px;
     height: 100px;
     border: 1px solid rgba(0,0,0,0.1);
@@ -135,8 +135,10 @@
 }
 
 #upload-files-input {
+    position: absolute;
     visibility: hidden;
     width: 0;
+    height: 0;
 }
 
 .upload-files-button {
@@ -187,8 +189,6 @@
 #upload-video-player {
     width: 300px;
     border-radius: 3px 3px 0 0;
-    /* margin-top: 0px; */
-    /* margin-left: 10px; */
 }
 
 .video-file-name {
@@ -203,12 +203,12 @@
 }
 
 .selected-file-details {
-    margin-top: 25px;
     width: 300px;
     height: 230px;
     background: #f9f9f9;
     border: none;
     border-radius: 5px;
+    margin-top: 25px;
 }
 
 .filename-text {
@@ -217,4 +217,15 @@
     color: #606060;
     margin-left: 10px;
     margin-top: 10px;
+}
+
+.upload-form-errors-container {
+        margin-top: 25px;
+        font-family: 'Roboto', sans-serif;
+        color: red;
+        text-align: center;
+}
+
+.errors-list{
+    list-style-type: none;
 }

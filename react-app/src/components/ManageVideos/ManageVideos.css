@@ -47,6 +47,7 @@
 
 .single-manage-video {
     width: 105px;
+    min-width: 105px;
     height: 80px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -94,7 +95,7 @@
 }
 
 .date-uploaded-header {
-    margin-left: 48%;
+    margin-left: 35.85%;
 }
 
 .views-header {
@@ -106,17 +107,18 @@
 }
 
 .single-video-date {
-    margin-left:  12.1%;
+    margin-left:  6.8%;
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
     height: 40px;
-    width: 100px;
+    width: 120px;
     font-family: 'Roboto', 'sans-serif';
 }
 
 .single-video-title {
-    width: 30%;
+    width: 22%;
+    min-width: 22%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -134,21 +136,55 @@
     justify-content: flex-end;
     align-items: flex-start;
     height: 40px;
-    width: 100px;
+    min-width: 100px;
     font-family: 'Roboto', 'sans-serif';
 }
 
 .single-video-comments {
-    margin-left: 13%;
+    margin-left: 9.7%;
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
     height: 40px;
-    width: 100px;
+    min-width: 100px;
     font-family: 'Roboto', 'sans-serif';
 }
 
 .modal {
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 10%;
+}
+
+.edit-button-modal-container {
+    margin-left: 10%;
+}
+
+.edit-button-modal {
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 3%;
+    width: 100px;
+    min-width: 100px;
+    height: 37px;
+    background-color: #065fd4;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+    color: white;
+}
+
+.manage-video-delete-button {
+    margin-left: 2%;
+    margin-right: 1%;
+    display: flex;
+    border: 0px solid transparent;
+    border-radius: 3%;
+    width: 100px;
+    min-width: 100px;
+    height: 37px;
+    background-color: #065fd4;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+    color: white;
 }

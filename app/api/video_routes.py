@@ -1,3 +1,4 @@
+from locale import currency
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import User, Video, Comment, db
@@ -25,7 +26,7 @@ def post_video():
 
 @video_routes.route('/', methods=['GET'])
 def get_videos():
-    videos = Video.query.all()
+    videos = Video.query.order_by(Video.id).all()
     return {'videos' : [video.to_dict() for video in videos]}
 
 @video_routes.route('/<int:video_id>/video-comments', methods=['POST'])
@@ -74,3 +75,32 @@ def delete_comment(video_id, comment_id):
     db.session.delete(comment)
     db.session.commit()
     return 'Delete successful'
+
+@video_routes.route('/<int:video_id>/views', methods=['PUT'])
+@login_required
+def add_view(video_id):
+    currentVideo = Video.query.get(video_id)
+
+    if(currentVideo):
+        currentVideo.views += 1
+        db.session.commit()
+        return {1:1}
+
+@video_routes.route('/<int:video_id>', methods=['PUT'])
+@login_required
+def edit_video(video_id):
+    data = request.json
+    print(data)
+    currentVideo = Video.query.get(video_id)
+
+    currentVideo.title = data['title']
+    currentVideo.description = data['description']
+    db.session.commit()
+    return {'video': currentVideo.to_dict()}
+
+@video_routes.route('/<int:video_id>', methods=['DELETE'])
+@login_required
+def delete_video(video_id):
+    db.session.query(Video).filter(Video.id == video_id).delete()
+    db.session.commit()
+    return {1:1}

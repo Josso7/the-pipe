@@ -53,7 +53,7 @@ video {
     justify-content: space-between;
     width: 68%;
     margin-left: 90px;
-    border-bottom: 1px solid lightgrey;
+    /* border-bottom: 1px solid lightgrey; */
     padding-bottom: 20px;
     font-family: 'Roboto', sans-serif;
 }
@@ -77,7 +77,7 @@ video {
     display: flex;
     flex-direction: column;
     line-height: 0px;
-    width: 46%;
+    width: 56.5%;
     margin-right: 39%;
 }
 
@@ -276,7 +276,7 @@ video {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     color: #030303;
-    margin-left: 5%;
+    margin-left: 90px;
     margin-top: 20px;
 }
 
@@ -419,4 +419,12 @@ video {
     font-family: 'Roboto', 'sans-serif';
     font-size: 14px;
     color: #909090;
+}
+
+.video-description {
+    font-family: 'Roboto', sans-serif;
+    width: 70%;
+    margin-left: 90px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid lightgrey;
 }

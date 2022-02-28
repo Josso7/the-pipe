@@ -6,11 +6,6 @@ const load = (allComments) => ({
     allComments
 });
 
-const add = (comment) => ({
-    type: ADD_COMMENT,
-    comment
-})
-
 export const postComment = (comment, videoId, userId) => async dispatch => {
     const response = await fetch(`/api/videos/${videoId}/video-comments`, {
         method: 'POST',
@@ -84,7 +79,6 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    let newState;
 
     switch(action.type){
       case GET_COMMENTS: {

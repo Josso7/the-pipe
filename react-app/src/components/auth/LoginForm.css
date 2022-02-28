@@ -57,7 +57,7 @@ input {
     font-family: 'Roboto', sans-serif;
     text-align: center;
     margin-left: 185px;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .sign-in-text-container {
@@ -71,4 +71,11 @@ input {
     margin-top: 25px;
     text-align: center;
     font-family: 'Roboto', sans-serif;
+}
+
+.login-error-message-container {
+    margin-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    color: red;
+    text-align: center;
 }

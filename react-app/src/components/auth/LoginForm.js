@@ -41,12 +41,13 @@ const LoginForm = () => {
       </div>
       <div>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div className='login-error-message-container' key={ind}>{error}</div>
         ))}
       </div>
       <div className='email-input-container'>
         <label className='email-input-label' htmlFor='email'></label>
         <input
+          required
           className='email-input'
           name='email'
           type='text'
@@ -58,6 +59,7 @@ const LoginForm = () => {
       <div className='password-input-container'>
         <label htmlFor='password'></label>
         <input
+          required
           className='password-input'
           name='password'
           type='password'
