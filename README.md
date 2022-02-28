@@ -16,7 +16,33 @@ TheTube is a clone of YouTube. Users can go to the website and watch videos subm
 - Javascript
 - React
 - Redux
+- CSS
 
+## Installation
+ 1. Clone ThePipe from https://github.com/Josso7/the-pipe.git
+
+## Backend
+ 1. From root directory install backend dependencies 
+   `pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt`
+ 2. Create a psql user with a PASSWORD and CREATEDB priviledges
+ 3. Create a psql database with the created user as OWNER
+ 4. Create a .env file using .env.example as a template
+ 5. Migrate and seed your database from within Python's virtual environment
+   `pipenv shell`
+   `pipenv shell`
+   `flask db upgrade`
+   `flask seed all`
+ 6. Start the backend server from within Python's virtual environment
+   `flask run`
+
+## Frontend
+ 1. From react-app directory install frontend dependencies
+   `npm install`
+ 2. Start the front end server from react-app directory
+   `npm start`
+ ThePipe should automatically open in a new tab using your default browser. If not, navigate to localhost:3000
+ 
+Migrate and seed your database from within Python's virtual environment
 # Home Page 
 ![DB Schema](https://github.com/Josso7/the-pipe/blob/main/wiki-images/the-pipe-home-page.png)
 # Video Page 
