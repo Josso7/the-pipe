@@ -2,17 +2,34 @@
     margin:0px;
 }
 
+.recommended-videos-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.recommended-videos-container {
+    margin-top: 80px;
+    width: 20%;
+    border: 1px solid #606060;
+    box-sizing: border-box;
+    margin-left: 20px;
+}
+
 .video-container {
-    overflow-y: hidden;
-    overflow-x: hidden;
+    /* overflow-y: hidden;
+    overflow-x: hidden; */
     margin-top: 80px;
     margin-left: 90px;
     width: 68%;
-    height: auto;
+    min-width: 68%;
+    /* height: auto; */
 }
 
 video {
     width: 100%;
+    height: 100;
+    display: flex;
 }
 
 .video-title-container {

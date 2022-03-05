@@ -241,12 +241,17 @@ function Videos(){
     return (
         <>
         <Navbar/>
-        <div className='video-container'>
-            {videoSrc && <video
-            autoPlay
-            controls
-            src={videoSrc.video_url}>
-            </video>}
+        <div className='recommended-videos-wrapper'>
+            <div className='video-container'>
+                {videoSrc && <video
+                autoPlay
+                controls
+                src={videoSrc.video_url}>
+                </video>}
+            </div>
+            <div className='recommended-videos-container'>
+                
+            </div>
         </div>
         <div className='video-title-container'>
             {videoSrc && <p>{videoSrc.title}</p>}
