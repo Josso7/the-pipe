@@ -43,6 +43,7 @@
 .manage-videos-container {
     margin-left: 5%;
     width: 90%;
+    padding-bottom: 60px;
 }
 
 .single-manage-video {
