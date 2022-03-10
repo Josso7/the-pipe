@@ -39,7 +39,8 @@ function ManageVideos(){
     const convertDatetoDateWithoutTime = (video) => {
         if (video.created_at_date){
             if (video.created_at_date.length > 15) {
-                let date = video.created_at_date.split(' ');
+              // console.log(video.created_at_date)
+                let date = video.created_at_date.split(' '); // 1929 march 29 12:28:28:12929 GMT 000
                 date.pop();
                 date.pop();
                 date.shift();

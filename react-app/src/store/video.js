@@ -1,9 +1,27 @@
 const GET_VIDEOS = '/video/GET_VIDEOS';
+const GET_RECOMMENDED_VIDEOS = '/video/GET_RECOMMENDED_VIDEOS';
 
 const load = (videos) => ({
     type: GET_VIDEOS,
     videos
 });
+
+const loadRecommended = (recommended) => ({
+    type: GET_RECOMMENDED_VIDEOS,
+    recommended
+})
+
+export const getRecommendedVideos = () => async dispatch => {
+    const response = await fetch('/api/videos/recommended', {
+        method: 'GET'
+    })
+
+    if(response.ok){
+        const videos = await response.json();
+        dispatch(loadRecommended(videos))
+        console.log(videos);
+    }
+}
 
 export const updateViews = (videoId) => async dispatch => {
     const response = await fetch(`/api/videos/${videoId}/views`, {
@@ -82,6 +100,12 @@ const reducer = (state = initialState, action) => {
             ...state,
             entries: [...action.videos.videos]
         }
+      }
+      case GET_RECOMMENDED_VIDEOS: {
+          return {
+              ...state,
+              recommended: [...action.recommended.videos]
+          }
       }
       default: return state;
     }
