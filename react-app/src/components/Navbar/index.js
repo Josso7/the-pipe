@@ -33,15 +33,21 @@ function Navbar(){
         if(searchResult) localStorage.setItem('searchResults', JSON.stringify(searchResult))
     }, [searchResult])
 
+    useEffect(() => {
+        if(window.location.pathname !== '/search-results') localStorage.removeItem('searchResults');
+    },[window.location.pathname])
+
     const handleClick = () => {
         if (userMenu) setUserMenu(false)
         else setUserMenu(true)
     }
 
     const handleSearch = async () => {
-        await dispatch(searchResults(searchInput));
-        history.push('/');
-        history.push('/search-results');
+        if(searchInput){
+            await dispatch(searchResults(searchInput));
+            history.push('/');
+            history.push('/search-results');
+        }
     }
 
     const onLogout = async (e) => {
