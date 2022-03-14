@@ -5,6 +5,7 @@ import YouTubeHomeLogo from '../../images/yt_logo.png'
 import '../Navbar/Navbar.css'
 import { logout } from '../../store/session'
 import SearchbarIcon from '../../images/yt-search-icon.png'
+import { searchResults } from '../../store/video';
 
 function Navbar(){
     const user = useSelector(state=> state?.session?.user)
@@ -31,12 +32,7 @@ function Navbar(){
     }
 
     const handleSearch = async () => {
-        const response = await fetch(`/api/search/${searchInput}`);
-
-        if(response.ok){
-            const videos = await response.json()
-            console.log(videos);
-        }
+        dispatch(searchResults(searchInput));
     }
 
     const onLogout = async (e) => {

@@ -10,6 +10,7 @@ import ManageVideos from './components/ManageVideos'
 import HomePage from './components/HomePage'
 import Videos from './components/Videos';
 import SplashPage from './components/SplashPage';
+import SearchResults from './components/SearchResults';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,6 +47,9 @@ function App() {
         </Route>
         <Route exact path='/home' >
           <HomePage />
+        </Route>
+        <Route exact path='/search-results'>
+          <SearchResults/>
         </Route>
         <Route exact path='/' >
           <SplashPage />

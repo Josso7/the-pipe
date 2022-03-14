@@ -1,5 +1,6 @@
 const GET_VIDEOS = '/video/GET_VIDEOS';
 const GET_RECOMMENDED_VIDEOS = '/video/GET_RECOMMENDED_VIDEOS';
+const GET_SEARCH_RESULTS = '/video/GET_SEARCH_RESULTS';
 
 const load = (videos) => ({
     type: GET_VIDEOS,
@@ -9,19 +10,36 @@ const load = (videos) => ({
 const loadRecommended = (recommended) => ({
     type: GET_RECOMMENDED_VIDEOS,
     recommended
+});
+
+const loadSearchResults = (searchVideos) => ({
+    type: GET_SEARCH_RESULTS,
+    searchVideos
 })
+
+export const searchResults = (searchQuery) => async dispatch => {
+    const response = await fetch(`/api/search/${searchQuery}`, {
+        method: 'GET'
+    });
+
+    if(response.ok){
+        const searchVideos = await response.json()
+        dispatch(loadSearchResults(searchVideos));
+        console.log(searchVideos);
+    };
+};
 
 export const getRecommendedVideos = () => async dispatch => {
     const response = await fetch('/api/videos/recommended', {
         method: 'GET'
-    })
+    });
 
     if(response.ok){
         const videos = await response.json();
         dispatch(loadRecommended(videos))
         console.log(videos);
-    }
-}
+    };
+};
 
 export const updateViews = (videoId) => async dispatch => {
     const response = await fetch(`/api/videos/${videoId}/views`, {
@@ -31,15 +49,15 @@ export const updateViews = (videoId) => async dispatch => {
     if(response.ok){
         dispatch(getVideos());
         return 'view added';
-    }
-}
+    };
+};
 
 export const deleteVideo = (videoId) => async dispatch => {
     await fetch(`/api/videos/${videoId}`, {
         method: 'DELETE'
     });
     dispatch(getVideos());
-}
+};
 
 export const editVideo = (videoId, title, description) => async dispatch => {
     console.log(videoId);
@@ -52,13 +70,13 @@ export const editVideo = (videoId, title, description) => async dispatch => {
             title,
             description
         })
-    })
+    });
 
     if(response.ok){
         dispatch(getVideos());
         return 'Video updated'
-    }
-}
+    };
+};
 
 export const postVideo = (videoUrl, title, description, userId) => async dispatch => {
     const response = await fetch('/api/videos/', {
@@ -77,8 +95,8 @@ export const postVideo = (videoUrl, title, description, userId) => async dispatc
     if(response.ok) {
         dispatch(getVideos());
         return 'video_url saved to database';
-    }
-}
+    };
+};
 
 export const getVideos = () => async dispatch => {
     const response = await fetch('/api/videos/');
@@ -86,11 +104,11 @@ export const getVideos = () => async dispatch => {
     if(response.ok){
         const videos = await response.json();
         dispatch(load(videos))
-    }
-}
+    };
+};
 
 const initialState = {
-}
+};
 
 const reducer = (state = initialState, action) => {
 
@@ -99,16 +117,22 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             entries: [...action.videos.videos]
-        }
-      }
+        };
+      };
       case GET_RECOMMENDED_VIDEOS: {
           return {
               ...state,
               recommended: [...action.recommended.videos]
+          };
+      };
+      case GET_SEARCH_RESULTS: {
+          return {
+              ...state,
+              searchResults: [...action.searchVideos.videos]
           }
       }
       default: return state;
-    }
-  }
+    };
+  };
 
 export default reducer;

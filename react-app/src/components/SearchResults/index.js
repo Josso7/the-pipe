@@ -1,14 +1,18 @@
 import './SearchResults.css';
 import { NavLink } from 'react-router-dom';
-import { useState, useEffect } from react;
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 
 function SearchResults() {
+
+    // const recommendedVideos = useSelector(state?.videos.recommendedVideos);
+
     return (
         <>
+        {
         <div className='search-results-container'>
-            <NavLink to={`/videos/${video.id}`}>
+            <NavLink to={`/videos/${1}`}>
             <div className='single-search-result'>
                 <div className='search-result-video-container'>
 
@@ -34,12 +38,12 @@ function SearchResults() {
                         </div>
                     </div>
                     <div className='search-result-description'>
-                        
+
                     </div>
                 </div>
             </div>
             </NavLink>
-        </div>
+        </div>}
         </>
     )
 }
