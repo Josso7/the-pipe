@@ -10,7 +10,7 @@ import { searchResults } from '../../store/video';
 function Navbar(){
     const history = useHistory();
     const user = useSelector(state=> state?.session?.user)
-    const searchResults = useSelector(state => state?.videos?.searchResults);
+    const searchResult = useSelector(state => state?.videos?.searchResults);
     const dispatch = useDispatch()
     const [userMenu, setUserMenu] = useState(false);
     const [searchInput, setSearchInput] = useState('');
@@ -29,15 +29,19 @@ function Navbar(){
       return () => document.removeEventListener("click", closeMenu);
     }, [userMenu, user]);
 
+    useEffect(() => {
+        if(searchResult) localStorage.setItem('searchResults', JSON.stringify(searchResult))
+    }, [searchResult])
+
     const handleClick = () => {
         if (userMenu) setUserMenu(false)
         else setUserMenu(true)
     }
 
     const handleSearch = async () => {
-        dispatch(searchResults(searchInput));
-        history.push('/search-results')
-        localStorage.setItem('searchResults', JSON.stringify(searchResults))
+        await dispatch(searchResults(searchInput));
+        history.push('/');
+        history.push('/search-results');
     }
 
     const onLogout = async (e) => {

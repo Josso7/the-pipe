@@ -7,7 +7,7 @@ import { getUsers } from '../../store/users';
 
 function SearchResults({searchResults}) {
     const dispatch = useDispatch();
-    const recommendedVideos = useSelector(state => state?.videos.searchResults);
+    const recommendedVideos = JSON.parse(localStorage.getItem('searchResults'));
     const users = useSelector(state => state?.users.entries)
 
     useEffect(() => {
@@ -45,11 +45,11 @@ function SearchResults({searchResults}) {
                     <div className='search-result-user-icon-username'>
                         <div className='search-result-user-icon'>
                             <div className='search-results-user-initial'>
-                                {users.find(user => user.id === video.user_id).username[0].toUpperCase()}
+                                {users && users.find(user => user.id === video.user_id).username[0].toUpperCase()}
                             </div>
                         </div>
                         <div className='search-result-username'>
-                        {users.find(user => user.id === video.user_id).username}
+                        {users && users.find(user => user.id === video.user_id).username}
                         </div>
                     </div>
                     <div className='search-result-description'>
