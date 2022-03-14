@@ -9,7 +9,7 @@ function SearchResults({searchResults}) {
     const dispatch = useDispatch();
     const recommendedVideos = JSON.parse(localStorage.getItem('searchResults'));
     const users = useSelector(state => state?.users.entries)
-
+    console.log(recommendedVideos)
     useEffect(() => {
         dispatch(getUsers())
     }, [])
@@ -17,8 +17,8 @@ function SearchResults({searchResults}) {
     return (
         <>
         <Navbar/>
-        <div className='search-results-container'>
-        {recommendedVideos && recommendedVideos.map(video => (
+        {recommendedVideos.length !== 0 && <div className='search-results-container'>
+        {recommendedVideos.map(video => (
             <NavLink to={`/videos/${video.id}`}>
             <div className='single-search-result'>
                 <div className='search-result-video-container'>
@@ -59,7 +59,16 @@ function SearchResults({searchResults}) {
             </div>
             </NavLink>
         ))}
-        </div>
+        </div>}
+        {recommendedVideos.length === 0 &&
+        <div className='no-results-container'>
+            <div className='no-results-text'>
+                No results found
+            </div>
+            <div className='try-different-keywords-text'>
+                Try different keywords
+            </div>
+        </div>}
         </>
     )
 }
