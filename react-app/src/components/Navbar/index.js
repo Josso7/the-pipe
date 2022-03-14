@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react'
 import YouTubeHomeLogo from '../../images/yt_logo.png'
@@ -8,10 +8,13 @@ import SearchbarIcon from '../../images/yt-search-icon.png'
 import { searchResults } from '../../store/video';
 
 function Navbar(){
+    const history = useHistory();
     const user = useSelector(state=> state?.session?.user)
+    const searchResults = useSelector(state => state?.videos?.searchResults);
     const dispatch = useDispatch()
     const [userMenu, setUserMenu] = useState(false);
     const [searchInput, setSearchInput] = useState('');
+
 
     useEffect(() => {
         if (!user) setUserMenu(false);
@@ -33,6 +36,8 @@ function Navbar(){
 
     const handleSearch = async () => {
         dispatch(searchResults(searchInput));
+        history.push('/search-results')
+        localStorage.setItem('searchResults', JSON.stringify(searchResults))
     }
 
     const onLogout = async (e) => {
