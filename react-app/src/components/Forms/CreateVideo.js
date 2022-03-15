@@ -39,22 +39,11 @@ function CreateVideo({ setUploadIsOpen }) {
   }
 
   useEffect(() => {
-    // uploadDescriptionContainer = document.getElementById('upload-description-div');
-    // textareaDescriptionInput = document.getElementById('textarea-description-input');
-    // textareaDescriptionInput.addEventListener('click', handleActiveDescriptionInput)
-    // let upLoadFormDiv = document.getElementById('upload-form-div');
-    // upLoadFormDiv.addEventListener('click', (e) => handleInactiveDescriptionInput(e))
-    // upLoadFormDiv.addEventListener('click', (e) => handleInactiveTitleInput(e))
 
-    // uploadTitleContainer = document.getElementById('upload-title-div');
-    // textareaTitleInput = document.getElementById('textarea-title-input');
-    // textareaTitleInput.addEventListener('click', handleActiveTitleInput)
 
     dispatch(getUsers());
     return () => {
-      // upLoadFormDiv.removeEventListener('click', {});
-      // textareaDescriptionInput.removeEventListener('click', {});
-      // textareaTitleInput.removeEventListener('click', {});
+
     }
   },[dispatch])
 
@@ -120,12 +109,6 @@ function CreateVideo({ setUploadIsOpen }) {
     }
   }
 
-  // let uploadDescriptionContainer = document.getElementById('upload-description-div');
-  // let textareaInput = document.getElementById('textarea-description-input');
-  // console.log(textareaInput);
-  // textareaInput.addEventListener('click', handleActiveInput)
-  // let upLoadFormDiv = document.getElementById('upload-form-div');
-  // upLoadFormDiv.addEventListener('click', (e) => handleInactiveInput(e))
   console.log(errors);
   return (
 
@@ -174,14 +157,12 @@ function CreateVideo({ setUploadIsOpen }) {
           />
         </label>
         </div>
-        {/* <label className='upload-choose-file-label'> */}
           <label className='upload-files-button' htmlFor='upload-files-input'>SELECT FILE</label>
               <input
                 id='upload-files-input'
                 type='file'
                 onChange={e => setVideoFile(e.target.files[0])}
               ></input>
-        {/* </label> */}
         {videoFile && <div
           className='selected-file-details'>
           {videoFile && <video

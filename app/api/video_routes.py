@@ -1,4 +1,3 @@
-from locale import currency
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import User, Video, Comment, db
@@ -104,3 +103,9 @@ def delete_video(video_id):
     db.session.query(Video).filter(Video.id == video_id).delete()
     db.session.commit()
     return {1:1}
+
+@video_routes.route('/recommended', methods=['GET'])
+def recommended_videos():
+    videos = db.session.query(Video).all()[:10]
+    print(videos)
+    return {'videos': [video.to_dict() for video in videos]}

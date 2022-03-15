@@ -1,0 +1,109 @@
+.search-results-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    background: #f9f9f9;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.single-search-result {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    color: #606060;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.search-result-video-container {
+    width: 36%;
+}
+
+.search-result-details-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.search-result-title {
+    color: #030303;
+    font-size: 18px;
+}
+
+.search-result-views-date {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+
+.search-result-views {
+
+}
+
+.search-result-bullet {
+    margin-left: 5px;
+}
+
+.search-result-date {
+    margin-left: 5px;
+}
+
+.search-result-user-icon-username {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.search-result-user-icon {
+    border: 0px solid transparent;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    background-color: #c2175b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-results-user-initial {
+    color: white;
+}
+
+.search-result-username {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.search-result-description {
+    margin-top: 10px;
+}
+
+.no-results-container {
+    display: flex;
+    flex-direction: column;
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #030303;
+    margin-top: 80px;
+    text-align: center;
+}
+
+.no-results-text {
+    font-size: 24px;
+}
+
+.try-different-keywords-text {
+    font-size: 14px;
+}

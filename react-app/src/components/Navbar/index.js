@@ -1,14 +1,20 @@
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react'
 import YouTubeHomeLogo from '../../images/yt_logo.png'
 import '../Navbar/Navbar.css'
 import { logout } from '../../store/session'
+import SearchbarIcon from '../../images/yt-search-icon.png'
+import { searchResults } from '../../store/video';
 
 function Navbar(){
+    const history = useHistory();
     const user = useSelector(state=> state?.session?.user)
+    const searchResult = useSelector(state => state?.videos?.searchResults);
     const dispatch = useDispatch()
     const [userMenu, setUserMenu] = useState(false);
+    const [searchInput, setSearchInput] = useState('');
+
 
     useEffect(() => {
         if (!user) setUserMenu(false);
@@ -23,13 +29,31 @@ function Navbar(){
       return () => document.removeEventListener("click", closeMenu);
     }, [userMenu, user]);
 
+    useEffect(() => {
+        if(searchResult) localStorage.setItem('searchResults', JSON.stringify(searchResult))
+    }, [searchResult])
+
+    useEffect(() => {
+        if(window.location.pathname !== '/search-results') localStorage.removeItem('searchResults');
+    },[window.location.pathname])
+
     const handleClick = () => {
         if (userMenu) setUserMenu(false)
         else setUserMenu(true)
     }
-        const onLogout = async (e) => {
-            await dispatch(logout());
-        };
+
+    const handleSearch = async () => {
+        if(searchInput){
+            await dispatch(searchResults(searchInput));
+            history.push('/');
+            history.push('/search-results');
+        }
+    }
+
+    const onLogout = async (e) => {
+        await dispatch(logout());
+    };
+
     if(window.location.pathname === '/login') return (
         <>
         </>
@@ -46,14 +70,16 @@ function Navbar(){
                     <img alt='ThePipe logo' title='ThePipe Home' id='image-yt-logo' src={YouTubeHomeLogo}></img>
                 </Link>
             </div>
-            {/* <div className='search-container'>
+            <div className='search-container'>
                     <input
                     className='search-bar'
                     type='text'
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
                     placeholder='Search'>
                     </input>
                     <button
-                    // onClick={handleSearch}
+                    onClick={handleSearch}
                     title='Search'
                     className='searchbar-icon-container'>
                         <img
@@ -61,7 +87,7 @@ function Navbar(){
                         src={SearchbarIcon}>
                         </img>
                     </button>
-            </div> */}
+            </div>
             <a className='github-button' href='https://github.com/Josso7/the-pipe'>GITHUB</a>
             <a className='linkedin-button' href='https://www.linkedin.com/in/jesse-brooks-8a6718229/'>LINKEDIN</a>
             {!user && <NavLink className='login-button-wrapper' to='/login'><button className='sign-in-button'>SIGN IN</button></NavLink>}

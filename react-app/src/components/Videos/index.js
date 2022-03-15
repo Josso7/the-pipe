@@ -1,9 +1,9 @@
 import './Videos.css';
 import Navbar from '../Navbar';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getVideos, updateViews } from '../../store/video';
+import { getVideos, updateViews, getRecommendedVideos } from '../../store/video';
 import { getComments, postComment, editUserComment, deleteUserComment } from '../../store/comment';
 import { getUsers } from '../../store/users';
 
@@ -16,6 +16,7 @@ function Videos(){
     const user = useSelector(state => state?.session?.user)
     const users = useSelector(state => state?.users?.entries)
     const comments = useSelector(state => state?.comments?.entries)
+    const recommendedVideos = useSelector(state => state.videos?.recommended)
     const [userComment, setUserComment] = useState('');
     const [editComment, setEditComment] = useState(0);
     const [addVideoComment, setAddVideoComment] = useState('');
@@ -34,6 +35,7 @@ function Videos(){
         dispatch(getComments(id));
         dispatch(getUsers());
         dispatch(updateViews(id));
+        dispatch(getRecommendedVideos());
         document.body.addEventListener('keydown', (e) => submitCommentOnEnter(e));
     }, [dispatch, id])
 
@@ -154,22 +156,22 @@ function Videos(){
         textareaAddComment.classList.remove('active');
     }
 
-    const convertDatetoDateWithoutTime = (video) => {
-        if (video.created_at_date){
-            if (video.created_at_date.length > 15) {
-                let date = video.created_at_date.split(' ');
-                date.pop();
-                date.pop();
-                date.shift();
-                date[0] = date[0] + ',';
-                [date[0], date[1]] = [date[1], date[0]];
-                date = date.join(' ');
-                video.created_at_date = date;
-                return video;
-            }
-        }
-        return video
-    }
+    // const convertDatetoDateWithoutTime = (video) => {
+    //     if (video.created_at_date){
+    //         if (video.created_at_date.length > 15) {
+    //             let date = video.created_at_date.split(' ');
+    //             date.pop();
+    //             date.pop();
+    //             date.shift();
+    //             date[0] = date[0] + ',';
+    //             [date[0], date[1]] = [date[1], date[0]];
+    //             date = date.join(' ');
+    //             video.created_at_date = date;
+    //             return video;
+    //         }
+    //     }
+    //     return video
+    // }
 
     const addComment = () => {
         dispatch(postComment(addVideoComment, videoSrc.id, user.id));
@@ -206,9 +208,9 @@ function Videos(){
         }
     }
 
-    if(videoSrc) {
-        videoSrc = convertDatetoDateWithoutTime(videoSrc);
-    }
+    // if(videoSrc) {
+    //     videoSrc = convertDatetoDateWithoutTime(videoSrc);
+    // }
 
     editCommentTextArea = document.getElementById('edit-comment-textarea-id');
     addCommentTextArea = document.getElementById('textarea-add-comment-input');
@@ -241,12 +243,44 @@ function Videos(){
     return (
         <>
         <Navbar/>
-        <div className='video-container'>
-            {videoSrc && <video
-            autoPlay
-            controls
-            src={videoSrc.video_url}>
-            </video>}
+        <div className='recommended-videos-wrapper'>
+            <div className='video-container'>
+                {videoSrc && <video
+                autoPlay
+                controls
+                src={videoSrc.video_url}>
+                </video>}
+            </div>
+            <div className='recommended-videos-container'>
+                {recommendedVideos && recommendedVideos.map(recommendedVideo => (
+                <NavLink className='recommended-video-link' to={`/videos/${recommendedVideo.id}`}>
+                <div className='recommended-video-single-container'>
+                    <div className='recommended-video-image'>
+                        <video
+                        src={recommendedVideo.video_url}>
+                        </video>
+                    </div>
+                    <div className='recommended-video-details'>
+                        <div className='recommended-video-title'>
+                            {recommendedVideo.title}
+                        </div>
+                        <div className='recommended-video-username'>
+                            {users.find(user => recommendedVideo.user_id === user.id).username}
+                        </div>
+                        <div className='recommended-video-views-date'>
+                            <div className='recommended-video-views'>
+                                {recommendedVideo.views}
+                            </div>
+                            <div className='recommended-video-bullet'>•</div>
+                            <div className='recommended-video-date'>
+                                {recommendedVideo.created_at_date}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </NavLink>
+                ))}
+            </div>
         </div>
         <div className='video-title-container'>
             {videoSrc && <p>{videoSrc.title}</p>}
@@ -327,7 +361,7 @@ function Videos(){
                 <div className='comment-info'>
                     <div className='user-name-date'>
                         {users && <div className='user-name'>{users?.find(element => element?.id === comment?.user_id).username}
-                            {<span className='date'>{convertDatetoDateWithoutTime(comment)?.created_at_date}</span>}
+                            {<span className='date'>{comment.created_at_date}</span>}
                         </div>}
 
                     </div>
