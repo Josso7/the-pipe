@@ -12,6 +12,7 @@ function CreateVideo({ setUploadIsOpen }) {
   const [description, setDescription] = useState('');
   const [errors, setErrors] = useState([]);
   const [displayErrors, setDisplayErrors] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const user = useSelector(state => state?.session?.user)
   let uploadDescriptionContainer;
   let uploadTitleContainer;
@@ -23,6 +24,7 @@ function CreateVideo({ setUploadIsOpen }) {
     e.preventDefault();
     if(errors.length === 0){
       e.preventDefault();
+      setIsUploading(true);
       const files = videoFile;
       const data = new FormData();
       data.append('file', files);
@@ -32,8 +34,9 @@ function CreateVideo({ setUploadIsOpen }) {
         body: data
       });
       const file = await res.json();
-      dispatch(postVideo(file.secure_url, title, description, user.id));
+      await dispatch(postVideo(file.secure_url, title, description, user.id));
       setUploadIsOpen(false);
+      setIsUploading(false);
       dispatch(getVideos());
     }
   }
@@ -184,7 +187,7 @@ function CreateVideo({ setUploadIsOpen }) {
           className='upload-choose-file-input'
           type='submit'
           >
-          UPLOAD VIDEO
+          {isUploading ? 'UPLOADING...': 'UPLOAD VIDEO'}
         </button>}
       </div>
       </div>

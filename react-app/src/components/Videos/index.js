@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { getVideos, updateViews, getRecommendedVideos } from '../../store/video';
 import { getComments, postComment, editUserComment, deleteUserComment } from '../../store/comment';
 import { getUsers } from '../../store/users';
+import LikeButton from '../../images/'
 
 function Videos(){
     const dispatch = useDispatch();
@@ -289,6 +290,11 @@ function Videos(){
             {videoSrc && <p>{videoSrc.views} views</p>}
             <p className='bullet-point'>•</p>
             {videoSrc && <p>{videoSrc.created_at_date}</p>}
+            <div className='like-button-video'>
+                <button>
+                    <image src={1}></image>
+                </button>
+            </div>
         </div>
         <div className='video-user-info-container'>
             <div className='user-icon'>

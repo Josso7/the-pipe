@@ -179,6 +179,12 @@
     cursor: pointer;
 }
 
+.upload-choose-file-input.uploading {
+    cursor: pointer;
+    content: 'UPLOADING...'
+}
+
+
 .upload-choose-file-label {
     display: flex;
     flex-direction: row;
