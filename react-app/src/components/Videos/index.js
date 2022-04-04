@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { getVideos, updateViews, getRecommendedVideos } from '../../store/video';
 import { getComments, postComment, editUserComment, deleteUserComment } from '../../store/comment';
 import { getUsers } from '../../store/users';
-import LikeButton from '../../images/'
+// import LikeButton from '../../images/'
 
 function Videos(){
     const dispatch = useDispatch();
